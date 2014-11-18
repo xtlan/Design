@@ -1,5 +1,5 @@
 {
-    "name": "xtlan/Design",
+    "name": "xtlan/design",
     "autoload": {
         "psr-4": {
             "xtlan\\Design\\": ""
