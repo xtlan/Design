@@ -1,7 +1,7 @@
 {
     "name": "xtlan/design",
     "require": {
-        "bower-asset/underscore": "*@stable"
+        "bower-asset/underscore": "1.4.3@stable"
     },
     "autoload": {
         "psr-4": {
