@@ -1,5 +1,5 @@
 <?php
-namespace app\lib\design\assets;
+namespace Xtlan\Design\Asset;
 
 use yii\web\AssetBundle;
 
