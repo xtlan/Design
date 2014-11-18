@@ -1,0 +1,118 @@
+<?php
+namespace Design\Pager;
+/**
+ * Decade
+ *
+ * @version 1.0.0
+ * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
+ * @author Kirya <cloudkserg11@gmail.com>
+ */
+class Decade extends \CComponent
+{
+    const DECADE_PAGES = 3;
+
+    /**
+     * _startPage
+     *
+     * @var int
+     */
+    private $_startPage;
+
+    /**
+     * _endPage
+     *
+     * @var int
+     */
+    private $_endPage;
+
+    /**
+     * _isFirst
+     *
+     * @var boolean
+     */
+    private $_isFirst = false;
+
+    /**
+     * _isLast
+     *
+     * @var boolean
+     */
+    private $_isLast = false;
+
+    /**
+     * __construct
+     *
+     * @param int $page
+     * @param int $minPage
+     * @param int $maxPage
+     * @return void
+     */
+    public function __construct($page, $minPage, $maxPage)
+    {
+        $decadeIndex = floor(($page -1) / self::DECADE_PAGES);
+        
+        $this->_startPage = $decadeIndex * self::DECADE_PAGES + 1;
+        $this->_endPage = $decadeIndex * self::DECADE_PAGES + self::DECADE_PAGES;
+
+        $this->_startPage = max($minPage, $this->_startPage);
+        $this->_endPage = min($maxPage, $this->_endPage);
+
+        $this->_isFirst = ($this->_startPage == $minPage);
+        $this->_isLast = ($this->_endPage == $maxPage);
+    
+    }
+
+    /**
+     * isFirst
+     *
+     * @return boolean
+     */
+    public function isFirst()
+    {
+        return $this->_isFirst;
+    }
+
+    /**
+     * isLast
+     *
+     * @return boolean
+     */
+    public function isLast()
+    {
+        return $this->_isLast;
+    }
+
+    /**
+     * getStartPage
+     *
+     * @return int
+     */
+    public function getStartPage()
+    {
+        return $this->_startPage;
+    }
+
+    /**
+     * getEndPage
+     *
+     * @return int
+     */
+    public function getEndPage()
+    {
+        return $this->_endPage;
+    }
+
+    /**
+     * getPages
+     *
+     * @return array
+     */
+    public function getPages()
+    {
+        return range($this->_startPage, $this->_endPage);
+    
+    }
+
+
+
+}
