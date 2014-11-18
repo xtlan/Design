@@ -2,6 +2,7 @@
 namespace Xtlan\Design\Asset;
 
 use yii\web\AssetBundle;
+use yii\web\View;
 
 /**
 * DesignAsset
@@ -11,7 +12,7 @@ use yii\web\AssetBundle;
 */
 class DesignAsset extends AssetBundle
 {
-    public $sourcePath = '@app/lib/Design/web';
+    public $sourcePath = '@vendor/xtlan/design/web';
 
     public $css = [
         'css/reset.css',
@@ -30,7 +31,15 @@ class DesignAsset extends AssetBundle
 
     public $depends = [
         'yii\web\JqueryAsset',
-        'dsxack\underscore\UnderscoreAsset'
+        'Xtlan\Core\Asset\UnderscoreAsset'
+    ];
+
+    public $jsOptions = [
+        'position' => View::POS_HEAD
+    ];
+    
+    public $cssOptions = [
+        'position' => View::POS_HEAD
     ];
 
 }

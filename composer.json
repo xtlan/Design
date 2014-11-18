@@ -1,5 +1,8 @@
 {
     "name": "xtlan/design",
+    "require": {
+        "bower-asset/underscore": "*@stable"
+    },
     "autoload": {
         "psr-4": {
             "Xtlan\\Design\\": ""

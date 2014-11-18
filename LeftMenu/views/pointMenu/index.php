@@ -1,9 +1,9 @@
-<li class="<?= ($this->_active) ? 'openSubList' : ''?>">
-    <a class="mainNav__list__link" href="" title=""><?=$this->label?></a>
+<li class="<?= ($this->context->active) ? 'openSubList' : ''?>">
+    <a class="mainNav__list__link" href="" title=""><?=$label?></a>
     <ul class="mainNav__sublist">
-        <?php foreach ($this->links as $link):?>
-            <li class="<?= ($link->aUrl->isCurrent()) ? 'active' : ''?>">
-                <a href="<?=$link->aUrl->url?>" title="">
+        <?php foreach ($links as $link):?>
+            <li class="<?= ($link->url->isCurrent()) ? 'active' : ''?>">
+                <a href="<?=$link->url->string?>" title="">
                     <?=$link->title?>
                 </a>
             </li>

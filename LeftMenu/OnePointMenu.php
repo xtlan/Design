@@ -25,6 +25,6 @@ class OnePointMenu extends Widget
      */
     public function run()
     {
-        $this->render('onePointMenu/index', array('link' => $this->link));
+        return $this->render('onePointMenu/index', array('link' => $this->link));
     }
 }

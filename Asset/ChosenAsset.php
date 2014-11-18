@@ -11,7 +11,7 @@ use yii\web\AssetBundle;
 */
 class ChosenAsset extends AssetBundle
 { 
-    public $sourcePath = '@app/lib/Design/web';
+    public $sourcePath = '@vendor/xtlan/design/web';
 
     public $css = [
     ];

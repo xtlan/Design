@@ -29,6 +29,17 @@ class PointMenu extends Widget
      */
     protected $_active = false;
 
+
+    /**
+     * getActive
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->_active;
+    }
+
     /**
      * run
      */
@@ -36,12 +47,12 @@ class PointMenu extends Widget
     {
         //Собираем массив пунктов для печати
         foreach ($this->links as $link) {
-            if ($link->aUrl->isCurrent()) {
+            if ($link->url->isCurrent()) {
                 $this->_active = true;
                 break;
             }
         }
 
-        $this->render('pointMenu/index');
+        return $this->render('pointMenu/index', ['links' => $this->links, 'label' => $this->label]);
     }
 }

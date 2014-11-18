@@ -13,11 +13,12 @@ class LeftMenu extends Widget
 {
     public function init()
     {
-        $this->render('leftMenu/start');
+        parent::init();
+        echo $this->render('leftMenu/start');
     }
     
     public function run()
     {
-        $this->render('leftMenu/end');
+       return $this->render('leftMenu/end');
     }
 }

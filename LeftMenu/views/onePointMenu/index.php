@@ -1,3 +1,3 @@
-<li class="<?= ($link->aUrl->isCurrent()) ? 'openSubList' : ''?>">
-    <a class="mainNav__list__link" href="<?=$link->aUrl->url?>" title=""><?=$link->title?></a>
+<li class="<?= ($link->url->isCurrent()) ? 'openSubList' : ''?>">
+    <a class="mainNav__list__link" href="<?=$link->url->string?>" title=""><?=$link->title?></a>
 </li>
