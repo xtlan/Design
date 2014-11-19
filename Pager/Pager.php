@@ -1,5 +1,10 @@
 <?php
-namespace Design\Pager;
+namespace Xtlan\Design\Pager;
+
+use yii\base\Widget;
+use Yii;
+use Xtlan\Core\Helper\GetUrl;
+
 /**
  * Pager
  *
@@ -7,14 +12,14 @@ namespace Design\Pager;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Pager extends \CWidget
+class Pager extends Widget
 {
 
 
     /**
      * pages
      *
-     * @var \CPagination
+     * @var \yii\data\Pagination
      */
     public $pages;
 
@@ -46,11 +51,11 @@ class Pager extends \CWidget
             $this->nextDecade = $this->createNextDecade($decade);
         }
 
-        $this->render(
-            "pager/index", array(
+        return $this->render(
+            "pager/index", [
                 'decade' => $decade,
                 'currentPage' => $this->currentPage
-            )
+            ]
         );
     }
 
@@ -111,7 +116,7 @@ class Pager extends \CWidget
      *
      * @return int
      */
-    protected function getStartPage() 
+    public function getStartPage() 
     {
         return 1;
     }
@@ -121,7 +126,7 @@ class Pager extends \CWidget
      *
      * @return int
      */
-    protected function getEndPage()
+    public function getEndPage()
     {
         return $this->pages->pageCount;
     }
@@ -134,7 +139,7 @@ class Pager extends \CWidget
      */
     protected function getCurrentPage()
     {
-        return $this->pages->currentPage + 1;
+        return $this->pages->page + 1;
     }
 
 
@@ -145,15 +150,15 @@ class Pager extends \CWidget
      * @param int $page
      * @return string
      */
-    protected function getUrl($page)
+    public function getUrl($page)
     {
         //Параметры получаем из гетовских
         $params = $_REQUEST;
         
-        $route = '/' . \Yii::app()->controller->route;
+        $route = '/' . Yii::$app->controller->route;
         $params['page'] = $page;
 
-        return \GetUrl::url($route, $params);
+        return GetUrl::url($route, $params);
     }
 
 
@@ -163,7 +168,7 @@ class Pager extends \CWidget
      *
      * @return int
      */
-    protected function getPrevPage()
+    public function getPrevPage()
     {
         if ($this->currentPage <= $this->startPage) {
             return null;
@@ -176,7 +181,7 @@ class Pager extends \CWidget
      *
      * @return int
      */
-    protected function getNextPage()
+    public function getNextPage()
     {
         if ($this->endPage <= $this->currentPage) {
             return null;

@@ -1,13 +1,17 @@
 <?php
+namespace Xtlan\Design\ModelTable\Menu;
+
+use yii\base\Widget;
+use Xtlan\Core\Helper\GetUrl;
+
 
 /**
- * Description of GroupDeleteButton
+ * GroupSortButton
  *
- * @author art3mk4 <Art3mk4@gmail.com>
+ * @version 1.0.0
+ * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\ModelTable\Menu;
-
-class GroupSortButton extends \RenderComponent implements ButtonInterface
+class GroupSortButton extends Widget implements ButtonInterface
 {
 
     /**
@@ -19,16 +23,17 @@ class GroupSortButton extends \RenderComponent implements ButtonInterface
 
     public function __construct($url = null)
     {
-        $this->_url = isset($url) ? $url : \GetUrl::url('saveSort');
+        $this->_url = isset($url) ? $url : GetUrl::url('saveSort');
     }
 
     /**
-     * render
-     * 
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
+        return $this->render(
             'groupSortButton.php',
             array('url' => $this->_url)
         );

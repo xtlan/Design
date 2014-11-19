@@ -1,5 +1,8 @@
 <?php
-namespace Design\Pager;
+namespace Xtlan\Design\Pager;
+
+use yii\base\Object;
+
 /**
  * Decade
  *
@@ -7,7 +10,7 @@ namespace Design\Pager;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Decade extends \CComponent
+class Decade extends Object
 {
     const DECADE_PAGES = 3;
 

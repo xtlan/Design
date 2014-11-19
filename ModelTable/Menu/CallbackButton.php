@@ -1,5 +1,5 @@
 <?php
-namespace Design\ModelTable\Menu;
+namespace Xtlan\Design\ModelTable\Menu;
 
 /**
  * CallbackButton
@@ -28,11 +28,11 @@ class CallbackButton implements ButtonInterface
     }
 
     /**
-     * render
-     * 
-     * @param \CModel $row
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
         $callback = $this->_callback;
         $callback();

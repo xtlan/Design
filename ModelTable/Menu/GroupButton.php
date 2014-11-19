@@ -1,13 +1,9 @@
 <?php
+namespace Xtlan\Design\ModelTable\Menu;
 
-/**
- * Description of GroupButton
- *
- * @author art3mk4 <Art3mk4@gmail.com>
- */
-namespace Design\ModelTable\Menu;
+use yii\base\Widget; 
 
-class GroupButton extends \RenderComponent implements ButtonInterface
+class GroupButton extends Widget implements ButtonInterface
 {
     /**
      *
@@ -25,13 +21,14 @@ class GroupButton extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
-     * 
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
-            'groupButton.php',
+        return $this->render(
+            'groupButton',
             array(
                 'buttons' => $this->_buttons
             )

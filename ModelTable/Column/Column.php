@@ -1,5 +1,8 @@
 <?php
-namespace Design\ModelTable\Column;
+namespace Xtlan\Design\ModelTable\Column;
+
+use yii\base\Widget;
+
 /**
  * Column
  *
@@ -7,7 +10,7 @@ namespace Design\ModelTable\Column;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Column extends \RenderComponent implements ColumnInterface
+class Column extends Widget implements ColumnInterface
 {
 
     /**
@@ -46,20 +49,20 @@ class Column extends \RenderComponent implements ColumnInterface
 
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param mixed $row
      */
-    public function render(\CModel $row)
+    public function getResult($row)
     {
-        $this->renderFile(
-            'column.php',
-            array(
+        return $this->render(
+            'column',
+            [
                 'label' => $this->_label,
                 'width' => $this->_width,
                 'callback' => $this->_callback,
                 'row' => $row
-            )
+            ]
         );
     }
 }

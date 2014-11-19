@@ -2,7 +2,7 @@
     Действия
     <ul class="action__list">
         <?php foreach($buttons as $button) {
-            $button->render();
+           echo $button->getResult();
         }?>
     </ul>
 </button>

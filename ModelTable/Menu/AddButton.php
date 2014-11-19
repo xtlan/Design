@@ -1,13 +1,17 @@
 <?php
+namespace Xtlan\Design\ModelTable\Menu;
+
+use yii\base\Widget; 
+use Xtlan\Core\Helper\GetUrl;
 
 /**
- * Description of AddButton
+ * AddButton
  *
- * @author art3mk4 <Art3mk4@gmail.com>
+ * @version 1.0.0
+ * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
+ * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\ModelTable\Menu;
-
-class AddButton extends \RenderComponent implements ButtonInterface
+class AddButton extends Widget implements ButtonInterface
 {
 
     /**
@@ -17,19 +21,26 @@ class AddButton extends \RenderComponent implements ButtonInterface
      */
     private $_url;
 
+    /**
+     * __construct
+     *
+     * @param mixed $url
+     * @return void
+     */
     public function __construct($url = null)
     {
-        $this->_url = isset($url) ? $url : \GetUrl::url('add');
+        $this->_url = isset($url) ? $url : GetUrl::url('add');
     }
+
     /**
-     * render
+     * getResult
      * 
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
-            'addButton.php', 
-            array('url' => $this->_url)
+        return $this->render(
+            'addButton', 
+            ['url' => $this->_url]
         );
     }
 }

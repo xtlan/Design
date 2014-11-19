@@ -5,9 +5,12 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Menu;
+namespace Xtlan\Design\ModelTable\Menu;
 
-class GroupDeleteButton extends \RenderComponent implements ButtonInterface
+use yii\base\Widget;
+use Xtlan\Core\Helper\GetUrl;
+
+class GroupDeleteButton extends Widget implements ButtonInterface
 {
 
     /**
@@ -19,17 +22,18 @@ class GroupDeleteButton extends \RenderComponent implements ButtonInterface
 
     public function __construct($url = null)
     {
-        $this->_url = isset($url) ? $url : \GetUrl::url('delete');
+        $this->_url = isset($url) ? $url : GetUrl::url('delete');
     }
 
     /**
-     * render
-     * 
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
-            'groupDeleteButton.php',
+        return $this->render(
+            'groupDeleteButton',
             array('url' => $this->_url)
         );
     }

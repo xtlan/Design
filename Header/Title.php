@@ -1,5 +1,8 @@
 <?php
-namespace Design\Header;
+namespace Xtlan\Design\Header;
+
+use yii\base\Widget;
+
 /**
  * Title
  *
@@ -7,7 +10,7 @@ namespace Design\Header;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Title extends \CWidget
+class Title extends Widget
 {
     /**
      * links
@@ -24,7 +27,7 @@ class Title extends \CWidget
     public function run()
     {
         
-        $this->render('title', array('links' => $this->links));
+        return $this->render('title', ['links' => $this->links]);
     
     }
 

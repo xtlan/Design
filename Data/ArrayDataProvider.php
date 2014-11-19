@@ -1,5 +1,9 @@
 <?php
-namespace Design\Data;
+namespace Xtlan\Design\Data;
+
+use yii\data\ArrayDataProvider as BaseProvider;
+
+
 /**
  * ArrayDataProvider
  *
@@ -7,17 +11,17 @@ namespace Design\Data;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class ArrayDataProvider extends \ArrayDataProvider
+class ArrayDataProvider extends BaseProvider implements DataProviderInterface
 {
 
     /**
-     * getAllRows
+     * getAllModels
      *
      * @return array
      **/
-    public function getAllRows()
+    public function getAllModels()
     {
-        return $this->getRows();
+        return $this->getModels();
     }
 
 

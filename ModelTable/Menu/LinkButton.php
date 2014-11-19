@@ -1,5 +1,8 @@
 <?php
-namespace Design\ModelTable\Menu;
+namespace Xtlan\Design\ModelTable\Menu;
+
+use yii\base\Widget;
+
 /**
  * LinkButton
  *
@@ -7,7 +10,7 @@ namespace Design\ModelTable\Menu;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class LinkButton extends \RenderComponent implements ButtonInterface
+class LinkButton extends Widget implements ButtonInterface
 {
  
     /**
@@ -37,16 +40,18 @@ class LinkButton extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
-     * 
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
-            'linkButton.php',
+        $this->render(
+            'linkButton',
             array(
                 'label' => $this->label,
-                'url'   => $this->url
+                'url'   => $this->url,
+                'class' => $this->class
             )
         );
     }

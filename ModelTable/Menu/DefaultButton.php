@@ -1,5 +1,5 @@
 <?php
-namespace Design\ModelTable\Menu;
+namespace Xtlan\Design\ModelTable\Menu;
 /**
  * DefaultButton
  *
@@ -23,7 +23,7 @@ class DefaultButton implements ButtonInterface
      */
     public function __construct()
     {
-        $this->_buttons = array(
+        $this->_buttons = [
             new AddButton(),
             new GroupButton(
                 array(
@@ -32,19 +32,22 @@ class DefaultButton implements ButtonInterface
                     new GroupSortButton()
                 )
             )
-        );
+        ];
     }
 
     /**
-     * render
+     * getResult
      *
      * @return void
      */
-    public function render()
+    public function getResult()
     {
+        $content = '';
         foreach ($this->_buttons as $button) {
-            $button->render();
+            $content .= $button->getResult();
         }
+
+        return $content;
     
     }
 

@@ -5,9 +5,11 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Menu;
+namespace Xtlan\Design\ModelTable\Menu;
 
-class GroupCheckButton extends \RenderComponent implements ButtonInterface
+use yii\base\Widget;
+
+class GroupCheckButton extends Widget implements ButtonInterface
 {
 
 
@@ -16,12 +18,13 @@ class GroupCheckButton extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
-     * 
+     * getResult
+     *
+     * @return void
      */
-    public function render()
+    public function getResult()
     {
-        $this->renderFile(
+        return $this->render(
             'groupCheckButton.php'
         );
     }

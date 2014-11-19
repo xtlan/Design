@@ -1,11 +1,16 @@
 <?php
+namespace Xtlan\Design\ModelTable;
 
 /**
  * Description of ModelTable
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable;
+
+use yii\base\Widget;
+use yii\helpers\Url;
+
+
 /**
  * ModelTable
  *
@@ -13,16 +18,8 @@ namespace Design\ModelTable;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class ModelTable extends \CWidget
+class ModelTable extends Widget
 {
-
-
-    /**
-     *
-     * @var CModel
-     */
-    public $model = null;
-
 
 
     /**
@@ -63,9 +60,9 @@ class ModelTable extends \CWidget
     public $sort;
 
     /**
-     * pages
+     * data
      *
-     * @var DataProvider
+     * @var Xtlan\Design\Data\DataProviderInterface
      */
     public $dataProvider;
 
@@ -78,19 +75,14 @@ class ModelTable extends \CWidget
     {
         $this->menuButtons = array(new Menu\DefaultButton());
 
-        $this->rowButtons = array(
-            new Row\EditButton(),
-            new Row\DeleteButton()
-        );
+        //$this->rowButtons = array(
+            //new Row\EditButton(),
+            //new Row\DeleteButton()
+        //);
 
-        $this->titleRow = new Row\TitleRow();
+        //$this->titleRow = new Row\TitleRow();
         
         return parent::__construct($owner);
-    }
-
-    public function init()
-    {
-        return parent::init();
     }
 
 
@@ -99,18 +91,28 @@ class ModelTable extends \CWidget
      */
     public function run()
     {
-        $rows = $this->dataProvider->rows;
+        $rows = $this->dataProvider->models;
 
         $prevRow = isset($this->dataProvider->prevRow) ? $this->dataProvider->prevRow : null;
         $nextRow = isset($this->dataProvider->nextRow) ? $this->dataProvider->nextRow : null;
 
-        $this->render('modelTable/index', 
-            array(
-                'pages' => $this->dataProvider->pages,
+        return $this->render(
+            'modelTable/index', 
+            [
+                'menuButtons' => $this->menuButtons,
+                'titleRow' => $this->titleRow,
+                'dataProvider' => $this->dataProvider,
+                'sort' => $this->sort,
+                'columns' => $this->columns,
+                'rowButtons' => $this->rowButtons,
+
+
+
+                'pages' => $this->dataProvider->pagination,
                 'rows' => $rows,
                 'prevRow' => $prevRow,
                 'nextRow' => $nextRow
-            )
+            ]
         );
     }
 
@@ -124,7 +126,7 @@ class ModelTable extends \CWidget
     public function getTitleUrl(CModel $row)
     {
         if (!isset($this->titleUrl)) {
-            $this->titleUrl = \GetUrl::url($this->titleRoute, array('id' => $row->id));
+            $this->titleUrl = Url::to([$this->titleRoute, 'id' => $row->id]);
         }
 
         return $this->titleUrl;
@@ -139,7 +141,7 @@ class ModelTable extends \CWidget
     protected function isFirstPage()
     {
         $pages = $this->dataProvider->pages;
-        return ($pages->currentPage + 1 == 1);
+        return ($pages->page + 1 == 1);
     }
 
 
@@ -151,7 +153,7 @@ class ModelTable extends \CWidget
     protected function isLastPage()
     {
         $pages = $this->dataProvider->pages;
-        return  ($pages->currentPage  + 1 == $pages->pageCount);
+        return  ($pages->page  + 1 == $pages->totalount);
     }
 
 

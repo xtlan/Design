@@ -1,30 +1,35 @@
 <?php
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/libs/jquery-ui-1.10.3.custom.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/libs/jquery.cookie.js');
+use Xtlan\Design\Asset\DesignAsset;
+use Xtlan\Core\Helper\GetUrl;
+use yii\helpers\Url;
 
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/operatorInfoTable/OperatorInfoTable.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/sort/SortTableView.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/actionBtns/ActionBtnView.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/actionBtns/ConfirmDeleteView.js');
+/* @var $this \yii\web\View */
+
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/libs/jquery-ui-1.10.3.custom.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/libs/jquery.cookie.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/operatorInfoTable/OperatorInfoTable.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/sort/SortTableView.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/actionBtns/ActionBtnView.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/actionBtns/ConfirmDeleteView.js'));
 ?>
 <div class="mainContent__actionBtns">
 
     <div class="tableSortBtns">
-        <button class="saveSortBtn actionActiveBtn" data-urlSort="<?=GetUrl::url('saveSort')?>">Сохранить</button>
+        <button class="saveSortBtn actionActiveBtn" data-urlSort="<?=Url::toRoute('saveSort')?>">Сохранить</button>
         <button class="cancelSortBtn actionDefaultBtn">Отменить</button>
     </div>
     <div class="tableActionBtns">
-         <?php foreach ($this->menuButtons as $menuButton) {
-            $menuButton->render();
+         <?php foreach ($menuButtons as $menuButton) {
+            echo $menuButton->getResult();
         }?>
     </div>
-    <?php if (isset($this->sort)):?>
-        <?php $this->sort->render()?>
+    <?php if (isset($sort)):?>
+        <?= $sort->getResult()?>
     <?php endif;?>
 
 </div>
 
-<?php if (!empty($this->dataProvider->rows)):?>
+<?php if (!empty($dataProvider->models)):?>
 
 <div class="tableViewContainer">
     <div class="tableView" data-beginSort="<?=$this->getBeginSort()?>">
@@ -34,19 +39,19 @@ Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot')
                 <div class="tableView__col">
                     <input class="f-choseTableView__checkbox" type="checkbox" value="<?=$prevRow->id?>" />
                 </div>
-                <?php if (isset($this->titleRow)) : ?>
-                    <?php $this->titleRow->render($prevRow); ?>
+                <?php if (isset($titleRow)) : ?>
+                    <?= $titleRow->getResult($prevRow); ?>
                 <?php endif; ?>
 
                 <div class="tableView__subRow">
-                    <?php foreach ($this->columns as $column):?>
-                        <?php $column->render($prevRow)?>
+                    <?php foreach ($columns as $column):?>
+                        <?= $column->getResult($prevRow)?>
                     <?php endforeach;?>
                 </div>
                 <div class="tableView__containerBtns">
                     <div class="tableViewInfo__controlBtn">
-                        <?php foreach ($this->rowButtons as $button) {
-                            $button->render($prevRow);
+                        <?php foreach ($rowButtons as $button) {
+                            echo $button->getResult($prevRow);
                         }?>
                     </div>
                 </div>
@@ -58,18 +63,18 @@ Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot')
             <div class="tableView__col">
                 <input class="f-choseTableView__checkbox" type="checkbox" value="<?=$row->id?>" />
             </div>
-            <?php if (isset($this->titleRow)) : ?>
-                <?php $this->titleRow->render($row); ?>
+            <?php if (isset($titleRow)) : ?>
+                <?= $titleRow->getResult($row); ?>
             <?php endif; ?>
             <div class="tableView__subRow">
-                <?php foreach ($this->columns as $column):?>
-                    <?php $column->render($row)?>
+                <?php foreach ($columns as $column):?>
+                    <?= $column->getResult($row)?>
                 <?php endforeach;?>
             </div>
             <div class="tableView__containerBtns">
                 <div class="tableViewInfo__controlBtn">
-                    <?php foreach ($this->rowButtons as $button) {
-                        $button->render($row);
+                    <?php foreach ($rowButtons as $button) {
+                        echo $button->getResult($row);
                     }?>
                 </div>
             </div>
@@ -81,18 +86,18 @@ Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot')
                 <div class="tableView__col">
                     <input class="f-choseTableView__checkbox" type="checkbox" value="<?=$nextRow->id?>" />
                 </div>
-                <?php if (isset($this->titleRow)) : ?>
-                    <?php $this->titleRow->render($nextRow); ?>
+                <?php if (isset($titleRow)) : ?>
+                    <?= $titleRow->getResult($nextRow); ?>
                 <?php endif; ?>
                 <div class="tableView__subRow">
-                    <?php foreach ($this->columns as $column):?>
-                        <?php $column->render($nextRow)?>
+                    <?php foreach ($columns as $column):?>
+                        <?= $column->getResult($nextRow)?>
                     <?php endforeach;?>
                 </div>
                 <div class="tableView__containerBtns">
                     <div class="tableViewInfo__controlBtn">
-                        <?php foreach ($this->rowButtons as $button) {
-                            $button->render($nextRow);
+                        <?php foreach ($rowButtons as $button) {
+                            echo $button->getResult($nextRow);
                         }?>
                     </div>
                 </div>

@@ -1,12 +1,18 @@
 <?php 
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot').'/js/views/layout/headerTitle/HeaderTitleView.js');
+use Xtlan\Design\Asset\DesignAsset;
+use Xtlan\Core\Helper\GetUrl;
+use yii\helpers\Html;
+
+/* @var $this \yii\web\View */
+
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/headerTitle/HeaderTitleView.js'));
 ?>
-<h1 class="<?=empty($links) ? 'emptyList__title' : ''?> mainContent__title"><?=Yii::app()->controller->pageTitle?></h1>
+<h1 class="<?=empty($links) ? 'emptyList__title' : ''?> mainContent__title"><?=$this->title?></h1>
 
 <?php if (!empty($links)) : ?>
     <ul class="action__list">
     <?php foreach ($links as $link) : ?>
-        <li><?=CHtml::link($link->title, $link->aUrl->url)?></li>
+        <li><?=Html::a($link->title, $link->url->string)?></li>
     <?php endforeach; ?>
     </ul> 
 <?php endif; ?>
