@@ -1,5 +1,10 @@
 <?php
-namespace Design\ModelTable\Column;
+namespace Xtlan\Design\ModelTable\Column;
+
+use yii\base\Widget;
+use yii\base\Model;
+use Xtlan\Design\ModelTable\RowResultInterface;
+
 /**
  * FieldColumn
  *
@@ -7,7 +12,7 @@ namespace Design\ModelTable\Column;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class FieldColumn extends \RenderComponent implements ColumnInterface
+class FieldColumn extends Widget implements RowResultInterface
 {
 
 
@@ -49,9 +54,9 @@ class FieldColumn extends \RenderComponent implements ColumnInterface
     /**
      * getLabel
      * 
-     * @param \CModel $model
+     * @param Model $model
      */
-    protected function getLabel(\CModel $model)
+    protected function getLabel(Model $model)
     {
         if ($this->_label == null) {
             $this->_label = $model->getAttributeLabel($this->_field);
@@ -61,17 +66,17 @@ class FieldColumn extends \RenderComponent implements ColumnInterface
     }
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
         $field = $this->_field;
         $value = $row->$field;
 
-        $this->renderFile(
-            'fieldColumn.php',
+        return $this->render(
+            'fieldColumn',
             array(
                 'value' => $value, 
                 'label' => $this->getLabel($row),

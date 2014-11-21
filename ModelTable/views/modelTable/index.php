@@ -24,7 +24,7 @@ $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/vi
         }?>
     </div>
     <?php if (isset($sort)):?>
-        <?= $sort->getResult()?>
+        <?= $sort->getResult($dataProvider->query)?>
     <?php endif;?>
 
 </div>
@@ -32,7 +32,7 @@ $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/vi
 <?php if (!empty($dataProvider->models)):?>
 
 <div class="tableViewContainer">
-    <div class="tableView" data-beginSort="<?=$this->getBeginSort()?>">
+    <div class="tableView" data-beginSort="<?=$dataProvider->pagination->offset?>">
 
         <?php if (isset($prevRow)) : ?>
             <div class="tableView__row otherPage___row">

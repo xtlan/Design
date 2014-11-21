@@ -1,15 +1,22 @@
+<?php
+use yii\helpers\Html;
+use Xtlan\Core\Helper\ArrayHelper;
+
+/* @var $this \yii\web\View */
+?>
+
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+    <?= $this->render('label', ['inputId' => $inputId, 'label' => $label]) ?>
     <div class="viewFieldSet__content__desc">
         <!-- Текстовое поле -->
-            <?php echo CHtml::textField(
-                $this->inputName, 
-                Text::encode($this->value),
-                CMap::mergeArray(
-                    $this->htmlOptions,
+            <?= Html::textInput(
+                $inputName, 
+                Html::encode($value),
+                ArrayHelper::merge(
+                    $htmlOptions,
                     array(
-                        'id' => $this->inputId,
-                        'class' => 'f-fieldSetText ' . $this->htmlOptions['class']
+                        'id' => $inputId,
+                        'class' => 'f-fieldSetText ' . $htmlOptions['class']
                     )
                 )
         ); ?>

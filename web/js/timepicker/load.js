@@ -154,7 +154,7 @@
         });
 
         //выбор какого либо значения
-        $('.time table tr td a').live({
+        $('.time table tr td a').on({
             click: function(){
                 //берем инпут и сохраняем в него то что выбрали
                 var $container = $(this).parents('.time-container');
@@ -167,7 +167,7 @@
         });
 
         //скролл
-        $('.time table').live({
+        $('.time table').on({
             mousewheel: function(e, delta){
                 //тут вроде все понятно
                 var $table = $(this);

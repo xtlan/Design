@@ -14,11 +14,12 @@ class LeftMenu extends Widget
     public function init()
     {
         parent::init();
-        echo $this->render('leftMenu/start');
+        ob_start();
     }
     
     public function run()
     {
-       return $this->render('leftMenu/end');
+        $content = ob_get_clean();
+        return $this->render('leftMenu/index', ['content' => $content]);
     }
 }

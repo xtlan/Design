@@ -1,13 +1,18 @@
 <?php
+namespace Xtlan\Design\ModelTable\Row\Button;
+
+use Xtlan\Design\ModelTable\RowResultInterface;
+use yii\base\Widget;
+use yii\base\Model;
+use Xtlan\Core\Helper\GetUrl;
+
 
 /**
  * Description of DeleteButton
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Row;
-
-class DeleteButton extends \RenderComponent implements ButtonInterface
+class DeleteButton extends Widget implements RowResultInterface
 {
     /**
      *
@@ -25,14 +30,14 @@ class DeleteButton extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
-        $url = \GetUrl::url($this->_route, array('id' => $row->id));
-        $this->renderFile(
+        $url = GetUrl::url($this->_route, array('id' => $row->id));
+        return $this->render(
             'deleteButton.php',
             array('url' => $url, 'id' => $row->id)
         );

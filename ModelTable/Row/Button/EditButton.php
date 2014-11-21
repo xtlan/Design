@@ -1,11 +1,10 @@
 <?php
+namespace Xtlan\Design\ModelTable\Row\Button;
 
-/**
- * Description of EditButton
- *
- * @author art3mk4 <Art3mk4@gmail.com>
- */
-namespace Design\ModelTable\Row;
+use Xtlan\Design\ModelTable\RowResultInterface;
+use yii\base\Widget;
+use yii\base\Model;
+use Xtlan\Core\Helper\GetUrl;
 
 /**
  * EditButton
@@ -14,7 +13,7 @@ namespace Design\ModelTable\Row;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class EditButton extends \RenderComponent implements ButtonInterface
+class EditButton extends Widget implements RowResultInterface
 {
 
     /**
@@ -33,15 +32,15 @@ class EditButton extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
-        $url = \GetUrl::url($this->_route, array('id' => $row->id));
-        $this->renderFile(
-            'editButton.php',
+        $url = GetUrl::url($this->_route, array('id' => $row->id));
+        return $this->render(
+            'editButton',
             array('url' => $url)
         );
     }

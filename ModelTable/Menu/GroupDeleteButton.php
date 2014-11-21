@@ -9,8 +9,9 @@ namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget;
 use Xtlan\Core\Helper\GetUrl;
+use Xtlan\Design\ModelTable\ResultInterface;
 
-class GroupDeleteButton extends Widget implements ButtonInterface
+class GroupDeleteButton extends Widget implements ResultInterface
 {
 
     /**

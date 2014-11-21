@@ -1,5 +1,11 @@
 <?php
-namespace Design\ModelTable\Column;
+namespace Xtlan\Design\ModelTable\Column;
+
+use yii\base\Widget;
+use Xtlan\Core\Helper\GetUrl;
+use yii\base\Model;
+use Xtlan\Design\ModelTable\RowResultInterface;
+
 /**
  * TitleColumn
  *
@@ -7,7 +13,7 @@ namespace Design\ModelTable\Column;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class TitleColumn extends \RenderComponent implements ColumnInterface
+class TitleColumn extends Widget implements RowResultInterface
 {
 
     /**
@@ -60,17 +66,17 @@ class TitleColumn extends \RenderComponent implements ColumnInterface
     }
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function render(Model $row)
     {
         $value = $row->getAttribute($this->_field);
 
-        $url = \GetUrl::url('edit', array('id' => $row->id));
+        $url = GetUrl::url('edit', array('id' => $row->id));
 
-        $this->renderFile(
+        return $this->render(
             'titleColumn.php',
             array(
                 'value' => $value, 

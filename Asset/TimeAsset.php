@@ -24,7 +24,7 @@ class TimeAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        'Xtlan\Design\Asset\JqueryAsset'
     ];
 
 }

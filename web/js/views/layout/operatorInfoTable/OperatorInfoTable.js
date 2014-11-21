@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
             this.checkbox.on('click', this._checkedCheckbox);
 
             if (this._tableRow.length > 0) {
-                this._tableRow.live('click', this._processChoseRow);
+                this._tableRow.on('click', this._processChoseRow);
             }
         
             

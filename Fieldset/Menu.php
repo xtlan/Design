@@ -1,5 +1,9 @@
 <?php
-namespace Design\Fieldset;
+namespace Xtlan\Design\Fieldset;
+
+use yii\base\Widget;
+use Xtlan\Core\Helper\GetUrl;
+
 /**
  * Menu
  *
@@ -7,7 +11,7 @@ namespace Design\Fieldset;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Menu extends \CWidget
+class Menu extends Widget
 {
     /**
      * cancelUr l
@@ -24,8 +28,8 @@ class Menu extends \CWidget
     public function run()
     {
         if (!isset($this->cancelUrl)) {
-            $this->cancelUrl = \GetUrl::url('index');
+            $this->cancelUrl = GetUrl::url('index');
         }
-        $this->render('menu/index');
+        return $this->render('menu/index', ['cancelUrl' => $this->cancelUrl]);
     }
 }

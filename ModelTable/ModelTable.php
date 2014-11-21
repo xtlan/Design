@@ -75,12 +75,12 @@ class ModelTable extends Widget
     {
         $this->menuButtons = array(new Menu\DefaultButton());
 
-        //$this->rowButtons = array(
-            //new Row\EditButton(),
-            //new Row\DeleteButton()
-        //);
+        $this->rowButtons = array(
+            new Row\Button\EditButton(),
+            new Row\Button\DeleteButton()
+        );
 
-        //$this->titleRow = new Row\TitleRow();
+        $this->titleRow = new Row\TitleRow();
         
         return parent::__construct($owner);
     }
@@ -157,14 +157,4 @@ class ModelTable extends Widget
     }
 
 
-    /**
-     * getBeginSort
-     *
-     * @return int
-     */
-    protected function getBeginSort()
-    {
-        $offset = $this->dataProvider->pages->offset;
-        return $offset;
-    }
 }

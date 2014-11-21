@@ -1,15 +1,16 @@
 <?php
+namespace Xtlan\Design\ModelTable\Menu;
 
 /**
  * Description of GroupDeleteButton
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget;
+use Xtlan\Design\ModelTable\ResultInterface;
 
-class GroupCheckButton extends Widget implements ButtonInterface
+class GroupCheckButton extends Widget implements ResultInterface
 {
 
 
@@ -25,7 +26,7 @@ class GroupCheckButton extends Widget implements ButtonInterface
     public function getResult()
     {
         return $this->render(
-            'groupCheckButton.php'
+            'groupCheckButton'
         );
     }
 }

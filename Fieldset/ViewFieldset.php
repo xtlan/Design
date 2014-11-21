@@ -1,5 +1,5 @@
 <?php
-namespace Design\Fieldset;
+namespace Xtlan\Design\Fieldset;
 /**
  * Description of ViewFieldset
  *
@@ -24,7 +24,7 @@ class ViewFieldset extends Fieldset
      */
     public function run()
     {
-        $this->render(
+        $content = $this->render(
             'viewFieldset/index',
             array(
                 'model' => $this->model,
@@ -32,6 +32,6 @@ class ViewFieldset extends Fieldset
             )
         );
 
-        return parent::run();
+        return $content . parent::run();
     }
 }

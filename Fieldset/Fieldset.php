@@ -5,7 +5,10 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Fieldset;
+namespace Xtlan\Design\Fieldset;
+
+use yii\base\Widget;
+
 /**
  * Fieldset
  *
@@ -13,7 +16,7 @@ namespace Design\Fieldset;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Fieldset extends \CWidget
+class Fieldset extends Widget
 {
 
     /**
@@ -39,15 +42,13 @@ class Fieldset extends \CWidget
      */
     public function init()
     {
+        parent::init();
+
         if ($this->showLabel == false) {
             $this->showContent = true;
         }
 
-        $this->render('fieldset/start', 
-            array(
-                'label' => $this->label
-            )
-        );
+        ob_start();
     }
 
     /**
@@ -55,6 +56,16 @@ class Fieldset extends \CWidget
      */
     public function run()
     {
-        $this->render('fieldset/end');
+        $content = ob_get_clean();
+        
+        return $this->render(
+            'fieldset/index', 
+            [
+                'content' => $content,
+                'label' => $this->label,
+                'showLabel' => $this->showLabel,
+                'showContent' => $this->showContent
+            ]
+        );
     }
 }

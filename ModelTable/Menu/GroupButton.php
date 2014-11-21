@@ -2,8 +2,9 @@
 namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget; 
+use Xtlan\Design\ModelTable\ResultInterface;
 
-class GroupButton extends Widget implements ButtonInterface
+class GroupButton extends Widget implements ResultInterface
 {
     /**
      *

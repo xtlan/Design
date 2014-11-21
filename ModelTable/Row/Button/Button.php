@@ -1,13 +1,16 @@
 <?php
+namespace Xtlan\Design\ModelTable\Row\Button;
+
+
+use yii\base\Widget;
+use Xtlan\Design\ModelTable\RowResultInterface;
 
 /**
  * Description of Button
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Row;
-
-class Button extends \RenderComponent implements ButtonInterface
+class Button extends Widget implements RowResultInterface
 {
     /**
      *
@@ -24,7 +27,7 @@ class Button extends \RenderComponent implements ButtonInterface
     /**
      * 
      * @param type $label
-     * @param \Design\ModelTable\Row\Callable $callback
+     * @param \Closure $callback
      */
     public function __construct($label, \Closure $callback)
     {
@@ -33,16 +36,16 @@ class Button extends \RenderComponent implements ButtonInterface
     }
 
     /**
-     * render
+     * getResult
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
         $callback = $this->_callback;
         $url = $callback($row);
-        $this->renderFile(
-            'button.php',
+        return $this->render(
+            'button',
             array(
                 'url' => $url,
                 'label' => $this->_label

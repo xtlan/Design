@@ -1,5 +1,7 @@
 <?php
-namespace Design\ModelTable\Row;
+namespace Xtlan\Design\ModelTable\Row\Button;
+
+use Xtlan\Design\ModelTable\RowResultInterface;
 
 /**
  * CallbackButton

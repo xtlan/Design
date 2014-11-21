@@ -1,4 +1,4 @@
-<?php foreach ($this->fields as $field) :?>
+<?php foreach ($fields as $field) :?>
     <div class="viewFieldSet__content__row">
         <div class="viewFieldSet__content__label">
             <p><?=$field->getLabel()?></p>

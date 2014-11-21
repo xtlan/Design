@@ -1,5 +1,8 @@
 <?php
 namespace Xtlan\Design\ModelTable\Menu;
+
+use Xtlan\Design\ModelTable\ResultInterface;
+
 /**
  * DefaultButton
  *
@@ -7,7 +10,7 @@ namespace Xtlan\Design\ModelTable\Menu;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class DefaultButton implements ButtonInterface
+class DefaultButton implements ResultInterface
 {
     /**
      * _buttons

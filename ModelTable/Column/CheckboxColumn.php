@@ -1,5 +1,8 @@
 <?php
-namespace Design\ModelTable\Column;
+namespace Xtlan\Design\ModelTable\Column;
+
+use yii\base\Model;
+
 /**
  * CheckboxColumn
  *
@@ -7,25 +10,24 @@ namespace Design\ModelTable\Column;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class CheckboxColumn extends FieldColumn implements ColumnInterface
+class CheckboxColumn extends FieldColumn
 {
-
 
     /**
      * render
      * 
-     * @param \CModel $row
+     * @param Model $row
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
         $field = $this->_field;
 
-        $this->renderFile(
-            'checkboxColumn.php',
+        return $this->render(
+            'checkboxColumn',
             array(
                 'width' => $this->_width,
-                'row' => $row,
-                'value' => $row->$field
+                'value' => $row->$field,
+                'label' => $this->getLabel($row)
             )
         );
     }

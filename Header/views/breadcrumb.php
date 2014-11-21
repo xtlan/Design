@@ -1,10 +1,17 @@
+<?php 
+use Xtlan\Core\Helper\ArrayHelper;
+use yii\helpers\Html;
+
+/* @var $this \yii\web\View */
+
+?>
 <nav id="breadcrumb">
     <p>
         <?php foreach ($links as $key => $link):?>
-            <?php if (!$breadcrumbHelper->isLastKey($key)) :?>
-                <a href="<?=$link->aUrl->url?>" title=""><?=CHtml::encode($link->title)?></a> →
+            <?php if (!ArrayHelper::isLastKey($links, $key)) :?>
+                <a href="<?=$link->url->string?>" title=""><?=Html::encode($link->title)?></a> →
             <?php else:?>
-            <?=CHtml::encode($link->title)?>
+            <?=Html::encode($link->title)?>
             <?php endif;?>
         <?php endforeach;?>
     </p>

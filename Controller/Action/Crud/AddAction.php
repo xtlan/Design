@@ -68,12 +68,13 @@ class AddAction extends Action
         $creatorClosure = $this->creator;
         $item = $creatorClosure();
 
-        if ($item->save()) {
+        if (!$item->save()) {
             $this->flashErrors($item);
-            $this->controller->redirect($this->getRedirectUrl($item));
+            return $this->controller->redirect($this->getRedirectUrl($item));
         }
 
-        $this->controller->redirect(GetUrl::url('edit', ['id' => $id]));
+
+        return $this->controller->redirect(GetUrl::url('edit', ['id' => $item->id]));
     }
     
 

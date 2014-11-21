@@ -2,8 +2,9 @@
 namespace Xtlan\Design\Controller\Action\Crud;
 
 use yii\base\Action as BaseAction;
-use yii\db\ActiveRecordInterface;
-use yii\helpers\Url;
+use yii\base\Model;
+use Xtlan\Core\Helper\GetUrl;
+use Yii;
 
 /**
 * Action
@@ -28,27 +29,57 @@ abstract class Action extends BaseAction
      */
     public $redirectUrl;
 
+    /**
+     * useStringId
+     *
+     * @var boolean
+     */
+    public $useStringId = false;
 
     /**
-     * flashErrors
+     * loader
      *
-     * @param ActiveRecordInterface $item
-     * @return void
+     * @var \Closure
      */
-    protected function flashErrors(ActiveRecordInterface $item)
+    protected $_loader;
+
+    /**
+     * Gets the value of Loader
+     *
+     * @return \Closure
+     */
+    public function getLoader()
     {
-        foreach ($item->errors as $field => $errors) {
-            Yii::$app->session->setFlash('error', implode(', ', $errors));
+        if (!isset($this->_loader)) {
+            $modelName = $this->modelName;
+            $this->_loader = function () use ($modelName) {
+                return $modelName::find();
+            };
         }
+        return $this->_loader;
     }
+
+    /**
+     * Sets the value of loader
+     *
+     * @param \Closure $loader 
+     *
+     * @return EditAction
+     */
+    public function setLoader($loader)
+    {
+        $this->_loader = $loader;
+        return $this;
+    }
+
 
     /**
      * getRedirectUrl
      *
-     * @param ActiveRecordInterface $item
+     * @param Model $item
      * @return string
      */
-    protected function getRedirectUrl(ActiveRecordInterface $item)
+    protected function getRedirectUrl(Model $item)
     {
         if (!isset($this->redirectUrl)) {
             return $this->getBackUrl();
@@ -69,13 +100,62 @@ abstract class Action extends BaseAction
      */
     protected function getBackUrl()
     {
-        $prevUrl = Url::previous();
-        $defaultUrl = Url::toRoute('index');
+        $prevUrl = GetUrl::previous();
+        $defaultUrl = GetUrl::toRoute('index');
         if (strpos($prevUrl, $defaultUrl) !== false) {
             return $prevUrl;
         }
 
         return $defaultUrl;
+    }
+
+    /**
+      validateId
+     *
+     * @param mixed $id
+     * @return boolean
+     */
+    protected function validateId($id = null)
+    {
+        if (!isset($id)) {
+            return false;
+        }
+        if (!($this->useStringId or is_numeric($id))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * getId
+     *
+     * @return mixed
+     */
+    protected function getId()
+    {
+        $id = Yii::$app->request->getQueryParam('id', null);
+        if (!$this->validateId($id)) {
+            throw new NotFoundHttpException('Неверный идентификатор');
+        }
+        return $id;
+    }
+
+    /**
+     * findItem
+     *
+     * @param mixed $id
+     * @return void
+     */
+    protected function findItem($id)
+    {
+        $loader = $this->loader; 
+        $item = $loader()->forId($id)->one();
+        if (!isset($item)) {
+            throw new NotFoundHttpException('Нет такого объекта');
+        }
+
+        return $item;
     }
 
     

@@ -1,13 +1,16 @@
 <?php
+namespace Xtlan\Design\ModelTable\Sort;
+
+use Xtlan\Design\ModelTable\ResultInterface;
+use yii\base\Widget;
+use Xtlan\Core\Model\Query;
 
 /**
  * Description of Sort
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Sort;
-
-class Sort extends \RenderComponent
+class Sort extends Widget
 {
     /**
      *
@@ -17,7 +20,7 @@ class Sort extends \RenderComponent
     
     /**
      * 
-     * @param array $elements
+     * @param array $elements of Element objects
      */
     public function __construct(array $elements)
     {
@@ -25,33 +28,32 @@ class Sort extends \RenderComponent
     }
 
     /**
-     * render
+     * getResult
+     *
+     * @param Query $query
+     * @return string
      */
-    public function render()
+    public function getResult(Query $query)
     {
-        $this->renderFile(
-            'sort.php',
+        $elements = $this->_elements;
+
+        $current = null;
+        foreach ($elements as $element) {
+            $element->setQuery($query);
+
+            if ($element->isCurrent()) {
+                $current = $element;
+            }
+        }
+
+        return $this->render(
+            'sort',
             array(
-                'elements' => $this->_elements,
-                'currentElement' => $this->getCurrentElement()
+                'elements' => $elements,
+                'currentElement' => $current
             )
         );
     }
 
 
-    /**
-     * getCurrentElement
-     * 
-     * @return null
-     */
-    private function getCurrentElement()
-    {
-        foreach ($this->_elements as $element) {
-            if ($element->isCurrent()) {
-                return $element;
-            }
-        }
-        
-        return null;
-    }
 }

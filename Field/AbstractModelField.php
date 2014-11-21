@@ -1,5 +1,8 @@
 <?php
-namespace Design\Field;
+namespace Xtlan\Design\Field;
+
+use yii\base\Widget;
+
 /**
  * AbstractModelField
  *
@@ -7,7 +10,7 @@ namespace Design\Field;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-abstract class AbstractModelField extends \CWidget
+abstract class AbstractModelField extends Widget
 {
 
     /**
@@ -21,25 +24,25 @@ abstract class AbstractModelField extends \CWidget
     );
 
     /**
-     * _model
+     * model
      *
-     * @var \CModel
+     * @var yii\base\Model
      */
-    private $_model;
+    public $model;
 
     /**
-     * _field
+     * field
      *
      * @var string
      */
-    private $_field;
+    public $field;
 
     /**
      * _isEdit
      *
      * @var boolean
      */
-    private $_isEdit = true;
+    public $isEdit = true;
 
     /**
      * _label
@@ -69,54 +72,8 @@ abstract class AbstractModelField extends \CWidget
      */
     private $_inputName;
 
-    /**
-     * _inputClass
-     *
-     * @var string
-     */
-    private $_inputClass;
 
-    /**
-     * Gets the value of model
-     *
-     * @return \CModel
-     */
-    public function getModel()
-    {
-        return $this->_model;
-    }
-    
-    /**
-     * Sets the value of model
-     *
-     * @param \CModel $model 
-     */
-    public function setModel(\CModel $model)
-    {
-        $this->_model = $model;
-        return $this;
-    }
 
-    /**
-     * Gets the value of field
-     *
-     * @return string
-     */
-    public function getField()
-    {
-        return $this->_field;
-    }
-    
-    /**
-     * Sets the value of field
-     *
-     * @param string $field 
-     */
-    public function setField($field)
-    {
-        $this->_field = $field;
-        return $this;
-    }
 
     /**
      * Gets the value of value
@@ -126,7 +83,7 @@ abstract class AbstractModelField extends \CWidget
     public function getValue()
     {
         if (!isset($this->_value)) {
-            $this->_value = $this->_model->getAttribute($this->_field);
+            $this->_value = $this->model->getAttribute($this->field);
         }
         return $this->_value;
     }
@@ -142,26 +99,6 @@ abstract class AbstractModelField extends \CWidget
         return $this;
     }
 
-    /**
-     * Gets the value of isEdit
-     *
-     * @return boolean
-     */
-    public function getIsEdit()
-    {
-        return $this->_isEdit;
-    }
-    
-    /**
-     * Sets the value of isEdit
-     *
-     * @param boolean $isEdit 
-     */
-    public function setIsEdit($isEdit)
-    {
-        $this->_isEdit = $isEdit;
-        return $this;
-    }
 
     /**
      * Gets the value of label
@@ -171,7 +108,7 @@ abstract class AbstractModelField extends \CWidget
     public function getLabel()
     {
         if (!isset($this->_label)) {
-            $this->_label = $this->_model->getAttributeLabel($this->_field);
+            $this->_label = $this->model->getAttributeLabel($this->field);
         }
         return $this->_label;
     }
@@ -195,8 +132,8 @@ abstract class AbstractModelField extends \CWidget
      */
     protected function getErrors()
     {
-        if (isset($this->_model->errors[$this->_field])) {
-            return $this->_model->errors[$this->_field];
+        if (isset($this->model->errors[$this->field])) {
+            return $this->model->errors[$this->field];
         }
     
         return array();
@@ -209,7 +146,7 @@ abstract class AbstractModelField extends \CWidget
      */
     protected function getIsRequired()
     {
-        if ($this->_model->isAttributeRequired($this->_field)) {
+        if ($this->model->isAttributeRequired($this->field)) {
             return true;
         } 
         return false;
@@ -224,8 +161,8 @@ abstract class AbstractModelField extends \CWidget
     public function getInputId()
     {
         if (!isset($this->_inputId)) {
-            $nameModel = $this->_model->nameModel;
-            $field = $this->_field;
+            $nameModel = $this->model->formName();
+            $field = $this->field;
         
             $this->_inputId = "{$nameModel}_{$field}";
         }
@@ -251,10 +188,9 @@ abstract class AbstractModelField extends \CWidget
     public function getInputName()
     {
         if (!isset($this->_inputName)) {
-            $nameModel = $this->_model->nameModel;
-            $field = $this->_field;
+            $nameModel = $this->model->formName();
 
-            $this->_inputName = "{$nameModel}[{$field}]";
+            $this->_inputName = "{$nameModel}[{$this->field}]";
         }
         return $this->_inputName;
     }

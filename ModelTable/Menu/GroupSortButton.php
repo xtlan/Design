@@ -3,6 +3,7 @@ namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget;
 use Xtlan\Core\Helper\GetUrl;
+use Xtlan\Design\ModelTable\ResultInterface;
 
 
 /**
@@ -11,7 +12,7 @@ use Xtlan\Core\Helper\GetUrl;
  * @version 1.0.0
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class GroupSortButton extends Widget implements ButtonInterface
+class GroupSortButton extends Widget implements ResultInterface
 {
 
     /**
@@ -34,7 +35,7 @@ class GroupSortButton extends Widget implements ButtonInterface
     public function getResult()
     {
         return $this->render(
-            'groupSortButton.php',
+            'groupSortButton',
             array('url' => $this->_url)
         );
     }

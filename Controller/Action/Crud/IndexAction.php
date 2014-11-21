@@ -2,8 +2,10 @@
 namespace Xtlan\Design\Controller\Action\Crud;
 
 use Yii;
+use yii\base\Action;
 use yii\web\NotFoundHttpException;
 use Xtlan\Design\Data\ActiveDataProvider;
+use Xtlan\Core\Helper\GetUrl;
 
 /**
  * IndexAction
@@ -77,13 +79,17 @@ class IndexAction extends Action
      */
     public function run()
     {
-        $page = Yii::$app->request->getQueryParam('page', 1);
+        $page = (int)Yii::$app->request->getQueryParam('page', 1);
         $order = Yii::$app->request->getQueryParam('order', null);
         $dir = Yii::$app->request->getQueryParam('dir', null);
 
 
         $queryClosure = $this->query;
         $query = $queryClosure();
+
+        if (isset($order)) {
+            $query->sort($order, $dir);
+        }
 
          
         $filter = null;
@@ -99,9 +105,12 @@ class IndexAction extends Action
         $provider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $this->pageSize
+                'pageSize' => $this->pageSize,
+                'page' => ($page -1)
             ]
         ]);
+
+        GetUrl::remember();
 
         return $this->controller->render(
             'index',

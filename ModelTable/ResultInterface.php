@@ -1,19 +1,23 @@
 <?php
-namespace Design\ModelTable\Row;
+namespace Xtlan\Design\ModelTable;
+
 /**
- * ButtonInterface
+ * ResultInterface
  *
  * @version 1.0.0
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-interface ButtonInterface
+interface ResultInterface
 {
+
     /**
-     * render
+     * getResult
      *
-     * @param \CModel $row
      * @return void
      */
-    public function render(\CModel $row);
+    public function getResult();
+
 }
+
+

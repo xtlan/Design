@@ -22,8 +22,8 @@ class ProgressAsset extends AssetBundle
     ];
     
     public $depends = [
-        'yii\jui\JuiAsset',
-        'dsxack\underscore\UnderscoreAsset'
+        'Xtlan\Design\Asset\JqueryAsset',
+        'Xtlan\Core\Asset\UnderscoreAsset'
     ];
 
 }

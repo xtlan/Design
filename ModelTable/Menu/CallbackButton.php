@@ -1,6 +1,8 @@
 <?php
 namespace Xtlan\Design\ModelTable\Menu;
 
+use Xtlan\Design\ModelTable\ResultInterface;
+
 /**
  * CallbackButton
  *
@@ -8,7 +10,7 @@ namespace Xtlan\Design\ModelTable\Menu;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class CallbackButton implements ButtonInterface
+class CallbackButton implements ResultInterface
 {
 
     /**

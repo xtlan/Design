@@ -8,3 +8,6 @@ $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/vie
 ?>
 <nav id="mainNav">
     <ul class="mainNav__list">
+        <?=$content?>
+    </ul>
+</nav>

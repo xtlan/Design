@@ -1,5 +1,11 @@
 <?php
-namespace Design\ModelTable\Row;
+namespace Xtlan\Design\ModelTable\Row;
+
+use yii\base\Widget;
+use Xtlan\Design\ModelTable\RowResultInterface;
+use yii\base\Model;
+use Xtlan\Core\Helper\GetUrl;
+
 /**
  * TitleRow
  *
@@ -7,13 +13,13 @@ namespace Design\ModelTable\Row;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class TitleRow extends \RenderComponent implements RowInterface
+class TitleRow extends Widget implements RowResultInterface
 {
 
     /**
      * _titleField
      *
-     * @var string
+     * @var string|\Closure
      */
     private $_titleField;
 
@@ -28,7 +34,7 @@ class TitleRow extends \RenderComponent implements RowInterface
     /**
      * __construct
      *
-     * @param string $titleField
+     * @param string|\Closure $titleField
      * @param \Closure $titleUrlCallback
      * @return void
      */
@@ -38,19 +44,19 @@ class TitleRow extends \RenderComponent implements RowInterface
         $this->_titleUrlCallback = $titleUrlCallback;
     }
 
+
     /**
-     * render
+     * getResult
      *
-     * @param \CModel $row
+     * @param Model $row
      * @return void
      */
-    public function render(\CModel $row)
+    public function getResult(Model $row)
     {
-        $field = $this->_titleField;
-        $title = $row->$field;
+        $title = $this->getTitle($row);
         $titleUrl = $this->getTitleUrl($row);
 
-        $this->renderFile('titleRow.php', array(
+        return $this->render('titleRow', array(
             'title' => $title,
             'titleUrl' => $titleUrl
         ));
@@ -58,18 +64,33 @@ class TitleRow extends \RenderComponent implements RowInterface
 
 
     /**
+     * getTitle
+     *
+     * @param Model $row
+     * @return string
+     */
+    private function getTitle(Model $row)
+    {
+        $field = $this->_titleField;
+        if (is_callable($field)) {
+            return $field($row);
+        }
+        return $row->$field;
+    }
+
+    /**
      * getTitleUrl
      *
-     * @param CModel $row
+     * @param Model $row
      * @return void
      */
-    protected function getTitleUrl(\CModel $row) 
+    protected function getTitleUrl(Model $row) 
     {
         if (isset($this->_titleUrlCallback)) {
             return call_user_func($this->_titleUrlCallback, $row);
         }
 
-        return \GetUrl::url('edit', array('id' => $row->id));
+        return GetUrl::url('edit', array('id' => $row->id));
     }
 
 

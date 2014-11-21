@@ -1,6 +1,10 @@
 <?php
-    Yii::app()->clientScript->registerPackage('underscore');
-    Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot').'/js/views/layout/systemMessage.js');
+    use Xtlan\Design\Asset\DesignAsset;
+    use Xtlan\Core\Helper\GetUrl;
+
+    /* @var $this \yii\web\View */
+
+    $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/views/layout/systemMessage.js'));
 ?>
 
 <div class="alert">

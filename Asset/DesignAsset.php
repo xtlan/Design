@@ -30,8 +30,8 @@ class DesignAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
-        'Xtlan\Design\Asset\UnderscoreAsset'
+        'Xtlan\Design\Asset\JqueryAsset',
+        'Xtlan\Core\Asset\UnderscoreAsset'
     ];
 
     public $jsOptions = [

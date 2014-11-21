@@ -6,7 +6,7 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
+namespace Xtlan\Design\Field;
 
 class TextField extends AbstractModelField
 {
@@ -51,7 +51,16 @@ class TextField extends AbstractModelField
      */
     public function run() 
     {
-        $this->render('textField/index');
+        return $this->render(
+            'textField/index',
+            [
+                'inputId' => $this->getInputId(),
+                'label' => $this->getLabel(),
+                'htmlOptions' => $this->htmlOptions,
+                'value' => $this->getValue(),
+                'inputName' => $this->getInputName()
+            ]
+        );
 
     }
 

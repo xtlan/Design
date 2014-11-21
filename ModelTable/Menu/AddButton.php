@@ -3,6 +3,7 @@ namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget; 
 use Xtlan\Core\Helper\GetUrl;
+use Xtlan\Design\ModelTable\ResultInterface;
 
 /**
  * AddButton
@@ -11,7 +12,7 @@ use Xtlan\Core\Helper\GetUrl;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class AddButton extends Widget implements ButtonInterface
+class AddButton extends Widget implements ResultInterface
 {
 
     /**

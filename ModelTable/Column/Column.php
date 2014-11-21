@@ -2,6 +2,8 @@
 namespace Xtlan\Design\ModelTable\Column;
 
 use yii\base\Widget;
+use yii\base\Model;
+use Xtlan\Design\ModelTable\RowResultInterface;
 
 /**
  * Column
@@ -10,7 +12,7 @@ use yii\base\Widget;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class Column extends Widget implements ColumnInterface
+class Column extends Widget implements RowResultInterface
 {
 
     /**
@@ -51,9 +53,9 @@ class Column extends Widget implements ColumnInterface
     /**
      * getResult
      * 
-     * @param mixed $row
+     * @param Model $row
      */
-    public function getResult($row)
+    public function getResult(Model $row)
     {
         return $this->render(
             'column',

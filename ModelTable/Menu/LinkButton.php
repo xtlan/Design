@@ -2,6 +2,7 @@
 namespace Xtlan\Design\ModelTable\Menu;
 
 use yii\base\Widget;
+use Xtlan\Design\ModelTable\ResultInterface;
 
 /**
  * LinkButton
@@ -10,7 +11,7 @@ use yii\base\Widget;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-class LinkButton extends Widget implements ButtonInterface
+class LinkButton extends Widget implements ResultInterface
 {
  
     /**
@@ -46,7 +47,7 @@ class LinkButton extends Widget implements ButtonInterface
      */
     public function getResult()
     {
-        $this->render(
+        return $this->render(
             'linkButton',
             array(
                 'label' => $this->label,

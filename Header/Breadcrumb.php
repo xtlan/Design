@@ -1,31 +1,31 @@
 <?php
+namespace Xtlan\Design\Header;
+
+use yii\base\Widget;
 
 /**
  * Description of Breadcrumb
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Header;
 
-class Breadcrumb extends \CWidget
+class Breadcrumb extends Widget
 {
     /**
      *
      * @var type 
      */
-    public $links = array();
+    public $links = [];
 
     /**
      * run
      */
     public function run()
     {
-        $breadcrumbHelper = new \ArrayHelper($this->links);
-        $this->render(
+        return $this->render(
             'breadcrumb',
             array(
-                'links' => $this->links,
-                'breadcrumbHelper' => $breadcrumbHelper
+                'links' => $this->links
             )
         );
     }

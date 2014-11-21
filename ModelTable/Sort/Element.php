@@ -1,13 +1,17 @@
 <?php
+namespace Xtlan\Design\ModelTable\Sort;
+
+use yii\base\Object;
+use Xtlan\Core\Model\Query;
+use yii\helpers\Url; 
+use Yii;
 
 /**
  * Description of Element
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\ModelTable\Sort;
-
-class Element extends \CComponent
+class Element extends Object
 {
     /**
      *
@@ -21,13 +25,14 @@ class Element extends \CComponent
      */
     private $_order;
 
-
     /**
-     * _currentDir
+     * _query
      *
-     * @var int
+     * @var Query
      */
-    private $_currentDir = \AModel::DESC;
+    private $_query;
+
+
 
     /**
      * 
@@ -38,10 +43,6 @@ class Element extends \CComponent
     {
         $this->_label = $label;
         $this->_order = $order;
-
-        if (isset($_GET['dir'])) {
-            $this->_currentDir = $_GET['dir'];
-        }
     }
     
     /**
@@ -55,6 +56,17 @@ class Element extends \CComponent
     }
 
     /**
+     * setQuery
+     *
+     * @param Query $query
+     * @return void
+     */
+    public function setQuery(Query $query)
+    {
+        $this->_query = $query;
+    }
+
+    /**
      * getUrl
      * 
      * @return string
@@ -62,18 +74,33 @@ class Element extends \CComponent
     public function getUrl()
     {
         //Параметры получаем из гетовских
-        $params = $_REQUEST;
+        $url = Yii::$app->request->resolve();
+        $url[0] = '/' . $url[0];
         
-        $route = '/' . \Yii::app()->controller->route;
-        $params['order'] = $this->_order;
-        if ($this->isUp()) {
-            $params['dir'] = \AModel::DESC;
-        } else {
-            $params['dir'] = \AModel::ASC;
-        }
+        $url['order'] = $this->_order;
+        $url['dir'] = ($this->isUp() ? Query::DESC : Query::ASC);
 
+        return Url::toRoute($url);
+    }
 
-        return \GetUrl::url($route, $params);
+    /**
+     * getCurrentDir
+     *
+     * @return boolean
+     */
+    public function getCurrentDir()
+    {
+        return $this->_query->sortDir;
+    }
+
+    /**
+     * getCurrentOrder
+     *
+     * @return boolean
+     */
+    public function getCurrentOrder()
+    {
+        return $this->_query->sortOrder;
     }
 
     /**
@@ -83,11 +110,12 @@ class Element extends \CComponent
      */
     public function isCurrent()
     {
-        if (!isset($_GET['order'])) {
+        $order = $this->currentOrder;
+        if (!isset($order)) {
             return false;
         }
 
-        return $_GET['order'] == $this->_order;
+        return $order == $this->_order;
     }
 
     /**
@@ -97,7 +125,7 @@ class Element extends \CComponent
      */
     public function isDown()
     {
-        return $this->_currentDir == \Amodel::DESC;
+        return $this->currentDir == Query::DESC;
     }
 
     /**
@@ -107,6 +135,6 @@ class Element extends \CComponent
      */
     public function isUp()
     {
-        return $this->_currentDir == \Amodel::ASC;
+        return $this->currentDir == Query::ASC;
     }
 }
