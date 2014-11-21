@@ -1,19 +1,44 @@
-<div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+<?php
+use yii\helpers\Html;
+use Xtlan\Design\Asset\DesignAsset;
+use Xtlan\Core\Helper\GetUrl;
+use yii\web\View;
+/* @var $this \yii\web\View */
 
-    <?php foreach ($this->errors as $error) : ?>
+if ($fck) {
+    $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/libs/ckeditor/ckeditor.js'));
+    $this->registerJsFile(GetUrl::assetsUrl($this,  DesignAsset::className(), 'js/libs/ckeditor/adapters/jquery.js'));
+    $this->registerJs( 
+        "jQuery('textarea.ckedit').ckeditor(function() {
+            toolbar : 'MyToolbar'
+        });",
+        View::POS_READY,
+        'fck_textarea');
+}
+?>
+
+<div class="viewFieldSet__content__row">
+    <?=$this->render(
+        '../textField/label', 
+        [
+            'inputId' => $inputId,
+            'label' => $label
+        ]
+    )?>
+
+    <?php foreach ($errors as $error) : ?>
         <p class="error"><?=$error?></p>
     <?php endforeach; ?>
     <div class="viewFieldSet__content__desc">
         <!-- Большое текстовое поле -->
-        <?php echo CHtml::textArea(
-            $this->inputName,
-            $this->value,
+        <?php echo Html::textArea(
+            $inputName,
+            $value,
             array_merge(
-                $this->htmlOptions,
+                $htmlOptions,
                 array(
-                    'id' => $this->inputId,
-                    'class' => 'f-fieldSetComment ' . (isset($this->htmlOptions['class']) ? $this->htmlOptions['class'] : '')
+                    'id' => $inputId,
+                    'class' => 'f-fieldSetComment ' . $htmlOptions['class'] . ($fck ? ' ckedit' : '')
                 )
             )
         ); ?>

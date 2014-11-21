@@ -17,8 +17,7 @@ class ChosenAsset extends AssetBundle
     ];
 
     public $js = [
-        '@bower/jquery',
-        'js/lib/chosen.jquery.min.js',
+        'js/libs/chosen.jquery.min.js',
     ];
 
     public $depends = [
