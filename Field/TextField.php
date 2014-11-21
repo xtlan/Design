@@ -1,4 +1,6 @@
 <?php
+namespace Xtlan\Design\Field;
+
 /**
  * TextField
  *
@@ -6,7 +8,6 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Xtlan\Design\Field;
 
 class TextField extends AbstractModelField
 {

@@ -1,26 +1,38 @@
 <?php
-Yii::app()->clientScript->registerPackage('design.chosen');
-Yii::app()->clientScript->registerCssFile(GetUrl::assetsUrl('design_webroot').'/css/jqueryUI/jquery.tooltip.css');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/libs/jquery.tooltip.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/actionBtns/ActionBtnView.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/actionBtns/ConfirmDeleteView.js');
-Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot') . '/js/views/layout/addSelectOption/AddSelectOption.js');
+use yii\helpers\Html;
+use Xtlan\Design\Asset\DesignAsset;
+use Xtlan\Core\Helper\GetUrl;
+use Xtlan\Design\Asset\ChosenAsset;
+use yii\web\View;
+
+ChosenAsset::register($this);
+$this->registerCssFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'css/jqueryUI/jquery.tooltip.css'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/libs/jquery.tooltip.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/views/layout/actionBtns/ActionBtnView.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/views/layout/actionBtns/ConfirmDeleteView.js'));
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), '/js/views/layout/addSelectOption/AddSelectOption.js'));
 ?>
 <div class="viewFieldSet__content__row">
     
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
     <div class="viewFieldSet__content__desc m-addOptionsInSelect">
         <!-- Выпадающий список -->
-        <?php echo CHtml::dropDownList(
-            $this->inputName,
-            $this->value,
-            $this->options,
+        <?php echo Html::dropDownList(
+            $inputName,
+            $value,
+            $options,
             array_merge(
-                $this->htmlOptions,
+                $htmlOptions,
                 array(
-                    'id' => $this->inputId,
-                    'prompt' => $this->isEmpty ? $this->prompt : null,
-                    'class' => 'f-fieldSetList ' . $this->htmlOptions['class']
+                    'id' => $inputId,
+                    'prompt' => $isEmpty ? $prompt : null,
+                    'class' => 'f-fieldSetList ' . $htmlOptions['class']
                 )
             )
         );?>
@@ -34,7 +46,7 @@ Yii::app()->clientScript->registerScriptFile(GetUrl::assetsUrl('design_webroot')
                 <h3>Добавить пункт в список</h3>
                 <input class="f-fieldSetText" type="text" />
                 <footer class="deleteOperatorPopup__footer">
-                    <button data-url="<?= $this->url?>" class="confirmAddOptionBtn">Добавить</button>
+                    <button data-url="<?= $url?>" class="confirmAddOptionBtn">Добавить</button>
                     <button class="negativeDeleteBtn">Отменить</button>
                 </footer>
             </div>

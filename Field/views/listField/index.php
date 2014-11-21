@@ -1,22 +1,31 @@
 <?php
-Yii::app()->clientScript->registerPackage('design.chosen');
+use yii\helpers\Html;
+use Xtlan\Design\Asset\ChosenAsset;
+
+ChosenAsset::register($this);
 ?>
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
-    <div class="viewFieldSet__content__desc <?= (isset($this->htmlOptions['class']) ? $this->htmlOptions['class'] : '') ?>">
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
+    <div class="viewFieldSet__content__desc <?= (isset($htmlOptions['class']) ? $htmlOptions['class'] : '') ?>">
         <!-- Выпадающий список -->
-        <?php echo CHtml::dropDownList(
-            $this->inputName,
-            $this->value,
-            $this->options,
+        <?php echo Html::dropDownList(
+            $inputName,
+            $value,
+            $options,
             array_merge(
-                $this->htmlOptions,
+                $htmlOptions,
                 array(
-                    'id' => $this->inputId,
-                    'prompt' => $this->isEmpty ? $this->prompt : null,
+                    'id' => $inputId,
+                    'prompt' => $isEmpty ? $prompt : null,
                     'class' => 'f-fieldSetList '
                 )
             )
-        );?>
+        ); ?>
     </div>
 </div>

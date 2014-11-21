@@ -1,11 +1,12 @@
 <?php
 
+namespace Xtlan\Design\Field;
+
 /**
  * Description of AddListField
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Field;
 
 class AddListField extends ListField
 {
@@ -20,7 +21,21 @@ class AddListField extends ListField
      */
     public function run()
     {
-        $this->render('addListField/index');
+        return $this->render(
+            'addListField/index',
+            [
+                'errors'      => $this->errors,
+                'inputName'   => $this->inputName,
+                'value'       => $this->value,
+                'options'     => $this->getOptions(),
+                'prompt'      => $this->getPrompt(),
+                'isEmpty'     => $this->getIsEmpty(),
+                'inputId'     => $this->inputId,
+                'htmlOptions' => $this->htmlOptions,
+                'label'       => $this->getLabel(),
+                'url'         => $this->getUrl()
+            ]
+        );
     }
 
     /**

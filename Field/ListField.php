@@ -1,4 +1,7 @@
 <?php
+
+namespace Xtlan\Design\Field;
+
 /**
  * ListField
  *
@@ -6,12 +9,9 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
 
 class ListField extends AbstractModelField
 {
-    
-    public $htmlOptions = array();
 
     /**
      * _options
@@ -34,7 +34,6 @@ class ListField extends AbstractModelField
      */
     private $_isEmpty = false;
 
-
     /**
      * Gets the value of isEmpty
      *
@@ -44,7 +43,7 @@ class ListField extends AbstractModelField
     {
         return $this->_isEmpty;
     }
-    
+
     /**
      * Sets the value of isEmpty
      *
@@ -56,8 +55,6 @@ class ListField extends AbstractModelField
         return $this;
     }
     
-
-
     /**
      * Gets the value of emptyPrompt
      *
@@ -78,8 +75,6 @@ class ListField extends AbstractModelField
         $this->_prompt = $prompt;
         return $this;
     }
-
-
 
     /**
      * Gets the value of options
@@ -111,22 +106,32 @@ class ListField extends AbstractModelField
       *
       * @return void
       */
-     public function run()
-     {
-        $this->render('listField/index');
-     
-     }
+    public function run()
+    {
+        return $this->render(
+            'listField/index',
+            [
+                'errors'      => $this->errors,
+                'inputName'   => $this->inputName,
+                'value'       => $this->value,
+                'options'     => $this->getOptions(),
+                'prompt'      => $this->getPrompt(),
+                'isEmpty'     => $this->getIsEmpty(),
+                'inputId'     => $this->inputId,
+                'htmlOptions' => $this->htmlOptions,
+                'label'       => $this->getLabel(),
+            ]
+        );
+    }
 
-
-
-     /**
-      * getModelRelationByField
-      *
-      * @param string $field
-      * @return CActiveRecord
-      */
-     private function getModelRelationByField($field)
-     {
+    /**
+    * getModelRelationByField
+    *
+    * @param string $field
+    * @return CActiveRecord
+    */
+    private function getModelRelationByField($field)
+    {
         $nameModelRelation = '';
 
         $fieldParts = explode('_', $field);
@@ -137,8 +142,5 @@ class ListField extends AbstractModelField
         } 
 
         return new $nameModelRelation();
-     }
-
-
-   
+    }
 }
