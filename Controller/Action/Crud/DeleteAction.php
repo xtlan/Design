@@ -3,8 +3,11 @@ namespace Xtlan\Design\Controller\Action\Crud;
 
 use Yii;
 use yii\web\NotFoundHttpException;
+use yii\web\ServerErrorHttpException;
 use yii\db\ActiveRecordInterface;
 use yii\base\Model;
+use Xtlan\Core\Component\Ajax;
+use Xtlan\Core\Helper\Text;
 
 /**
 * EditAction
@@ -12,7 +15,7 @@ use yii\base\Model;
 * @version 1.0.0
 * @author Kirya <cloudkserg11@gmail.com>
 */
-class EditAction extends Action
+class DeleteAction extends Action
 {
 
 
@@ -24,7 +27,7 @@ class EditAction extends Action
     public function run()
     {
         $ids = $this->getIds();
-        $items = $this->findItem($ids);
+        $items = $this->findItems($ids);
 
         try{
             foreach ($items as $item) {
@@ -33,48 +36,72 @@ class EditAction extends Action
         } catch (\Exception $e) {
             throw new ServerErrorHttpException($e->getMessage());
         }
-
-        if (!empty($item->errors)) {
-            $this->flashErrors($item);
+        
+        $message = $this->delMessage($ids);
+        Yii::$app->session->setFlash('success', $message);
+        if (Yii::$app->request->isAjax) {
+            $ajax = new Ajax();
+            return $ajax->sendRespond(true, $message);
         }
  
-        return $this->controller->render('edit', ['item' => $item]);
+        return $this->controller->redirect($this->getRedirectUrl($item));
+    }
+    
+    /**
+     * delMessage
+     *
+     * @param array $ids
+     * @return void
+     */
+    protected function delMessage(array $ids)
+    {
+        $countIds = count($ids);
+        return "{$countIds} " . Text::wordNum(
+            $countIds, 
+            array(
+                'элемент удален', 
+                'элемента удалено', 
+                'элементов удалено'
+            )
+        );
     }
 
     /**
-     * sendRedirect
+     * getIds
      *
-     * @param Model $item
-     * @return void
+     * @return array
      */
-    private function sendRedirect(Model $item)
+    private function getIds()
     {
-        if (Yii::$app->request->isAjax) {
-            $ajax = new Ajax();
-            $ajax->sendRespond(true, 'Данные верны');
-            Yii::$app->end();
+        $ids = Yii::$app->request->post('id', null);
+        if (!isset($ids)) {
+            throw new NotFoundHttpException('Неверный идентификатор');
         }
-        
-        $this->controller->redirect($this->getRedirectUrl($item));
+        if (!is_array($ids)) {
+            $ids = array($ids);
+        }
+
+        return $ids;
     }
+
 
 
     /**
-     * flashErrors
+     * findItems
      *
-     * @param Model $item
+     * @param array $ids
      * @return void
      */
-    private function flashErrors(Model $item)
+    protected function findItems(array $ids)
     {
-        if (Yii::$app->request->isAjax) {
-            $ajax = new Ajax();
-            $ajax->thorwValidateErrors($item);
+        $loader = $this->loader; 
+        $items = $loader()->forId($ids)->all();
+        if (empty($items)) {
+            throw new NotFoundHttpException('Нет таких объектов');
         }
-        $this->controller->flashErrors($item);
+
+        return $items;
     }
-
-
 
     
 }

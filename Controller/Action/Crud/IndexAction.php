@@ -87,9 +87,7 @@ class IndexAction extends Action
         $queryClosure = $this->query;
         $query = $queryClosure();
 
-        if (isset($order)) {
-            $query->sort($order, $dir);
-        }
+        $query->sort($order, $dir);
 
          
         $filter = null;
