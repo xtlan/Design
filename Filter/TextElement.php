@@ -5,7 +5,7 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Filter;
+namespace Xtlan\Design\Filter;
 
 class TextElement extends FilterElement
 {
@@ -38,9 +38,13 @@ class TextElement extends FilterElement
      */
     public function renderElement()
     {
-        $this->renderFile(
-            'textElement/index.php',
-            array()
+        return $this->render(
+            'textElement/index',
+            [
+                'id' => $this->id,
+                'model' => $this->model,
+                'field' => $this->_field
+            ]
         );
     }
 
@@ -49,9 +53,12 @@ class TextElement extends FilterElement
      */
     public function renderSaveElement()
     {
-        $this->renderFile(
-            'textElement/save.php',
+        return $this->render(
+            'textElement/save',
             array(
+                'id' => $this->id,
+                'model' => $this->model,
+                'field' => $this->_field,
                 'title' => $this->title,
                 'value' => $this->value,
             )

@@ -1,13 +1,16 @@
 <?php
+namespace Xtlan\Design\Filter;
 
+use yii\base\Widget;
+use yii\helpers\Url;
+use Yii;
 /**
  * Description of Filter
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Filter;
 
-class Filter extends \CWidget
+class Filter extends Widget
 {
 
     /**
@@ -23,24 +26,18 @@ class Filter extends \CWidget
     public $elements = array();
 
     /**
-     *
-     * @var string 
-     */
-    public $filterUrl;
-
-    /**
      * run
      *
      * @return void
      */
     public function run()
     {
-        $this->filterUrl = $this->loadFilterUrl();
+        $filterUrl = $this->loadFilterUrl();
         
         foreach ($this->elements as $element) {
-            $element->setModel($this->model);
+            $element->model = $this->model;
         }
-        $this->render('filter/index');
+        $this->render('filter/index', ['filterUrl' => $filterUrl, 'elements' => $this->elements]);
     }
     
     /**
@@ -50,10 +47,12 @@ class Filter extends \CWidget
      */
     private function loadFilterUrl()
     {
-        $route = \Yii::app()->controller->route;
-        $classFilter = get_class($this->model);
-        unset($_GET[$classFilter]);
-        $paramsWithouteFilter = $_GET;
-        return \GetUrl::url("/" . $route, $paramsWithouteFilter);
+        $params = Yii::$app->request->resolve();
+
+        $classFilter = $this->model->formName();
+        unset($params[$classFilter]);
+
+        $params[0] = '/' . $params[0];
+        return Url::toRoute($params);
     }
 }

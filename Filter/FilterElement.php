@@ -5,9 +5,12 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Filter;
+namespace Xtlan\Design\Filter;
 
-abstract class FilterElement extends \RenderComponent
+use yii\base\Widget;
+use yii\helpers\Html;
+
+abstract class FilterElement extends Widget
 {
     /**
      *
@@ -19,7 +22,7 @@ abstract class FilterElement extends \RenderComponent
      *
      * @var type 
      */
-    protected $_model;
+    public $model;
 
     /**
      * getTitle
@@ -28,7 +31,7 @@ abstract class FilterElement extends \RenderComponent
      */
     public function getTitle()
     {
-        return $this->_model->getAttributeLabel($this->_field);
+        return $this->model->getAttributeLabel($this->_field);
     }
 
     /**
@@ -38,7 +41,7 @@ abstract class FilterElement extends \RenderComponent
      */
     public function getId()
     {
-        return \CHtml::activeId($this->_model, $this->_field);
+        return Html::getInputId($this->model, $this->_field);
     }
 
     /**
@@ -48,27 +51,12 @@ abstract class FilterElement extends \RenderComponent
      */
     protected function getValue()
     {
-        return $this->_model->getAttribute($this->_field);
+        if ($this->model->hasProperty($this->_field)) {
+            return $this->model->attributes[$this->_field];
+        }
+        return null;
     }
 
-    /**
-     * setModel
-     *
-     * @param \CModel $model
-     */
-    public function setModel(\CModel $model)
-    {
-        $this->_model = $model;
-    }
-
-    /**
-     * 
-     * @return \CModel
-     */
-    public function getModel()
-    {
-        return $this->_model;
-    }
 
     /**
      * renderElement
