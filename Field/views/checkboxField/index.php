@@ -1,17 +1,26 @@
+<?php
+use yii\helpers\Html;
+?>
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label' => $label
+        ]
+    )?>
     <div class="viewFieldSet__content__desc">
         <!-- Чекбокс -->
-        <?php echo CHtml::checkBox($this->inputName, $this->value, 
+        <?php echo Html::checkBox($inputName, $value, 
             array_merge(
-                $this->htmlOptions,
+                $htmlOptions,
                 array(
-                    'id' => $this->inputId,
+                    'id' => $inputId,
                     'value' => 1,
                     'uncheckValue' => 0,
-                    'class' => 'f-fieldSetCheck ' . $this->htmlOptions['class']
+                    'class' => 'f-fieldSetCheck ' . $htmlOptions['class']
                 )
             )
-        ); ?>
+        );?>
     </div>
 </div>

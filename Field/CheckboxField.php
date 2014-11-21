@@ -1,4 +1,7 @@
 <?php
+
+namespace Xtlan\Design\Field;
+
 /**
  * CheckboxField
  *
@@ -6,7 +9,6 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
 
 class CheckboxField extends AbstractModelField
 {
@@ -24,7 +26,16 @@ class CheckboxField extends AbstractModelField
             $this->value = 1;
         }
 
-        $this->render('checkboxField/index');
+        return $this->render(
+            'checkboxField/index',
+            [
+                'errors'      => $this->errors,
+                'inputName'   => $this->inputName,
+                'value'       => $this->value,
+                'inputId'     => $this->inputId,
+                'htmlOptions' => $this->htmlOptions,
+                'label'       => $this->getLabel(),
+            ]
+        );
     }
-
 }
