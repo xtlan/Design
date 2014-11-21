@@ -1,4 +1,5 @@
 <?php
+namespace Xtlan\Design\Field;
 /**
  * TextareaField
  *
@@ -6,7 +7,6 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
 
 class TextareaField extends AbstractModelField
 {
@@ -82,8 +82,18 @@ class TextareaField extends AbstractModelField
      */
     public function run()
     {
-        $this->render('textareaField/index');
-
+        return $this->render(
+            'textareaField/index',
+            [
+                'errors' => $this->errors,
+                'inputName' => $this->inputName,
+                'value' => $this->value,
+                'inputId' => $this->inputId,
+                'htmlOptions' => $this->htmlOptions,
+                'label' => $this->getLabel(),
+                'fck' => $this->getFck()
+            ]
+        );
     }
 
 
