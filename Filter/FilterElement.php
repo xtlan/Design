@@ -29,17 +29,17 @@ abstract class FilterElement extends Widget
      * 
      * @return type
      */
-    public function getTitle()
+    protected function getTitle()
     {
         return $this->model->getAttributeLabel($this->_field);
     }
 
     /**
-     * getId
+     * getFieldId
      * 
      * @return type
      */
-    public function getId()
+    protected function getFieldId()
     {
         return Html::getInputId($this->model, $this->_field);
     }

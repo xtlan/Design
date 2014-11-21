@@ -41,7 +41,7 @@ class TextElement extends FilterElement
         return $this->render(
             'textElement/index',
             [
-                'id' => $this->id,
+                'id' => $this->getFieldId(),
                 'model' => $this->model,
                 'field' => $this->_field
             ]
@@ -56,11 +56,11 @@ class TextElement extends FilterElement
         return $this->render(
             'textElement/save',
             array(
-                'id' => $this->id,
+                'id' => $this->getFieldId(),
                 'model' => $this->model,
                 'field' => $this->_field,
-                'title' => $this->title,
-                'value' => $this->value,
+                'title' => $this->getTitle(),
+                'value' => $this->getValue(),
             )
         );
     }
