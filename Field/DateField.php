@@ -1,4 +1,7 @@
 <?php
+
+namespace Xtlan\Design\Field;
+
 /**
  * DateField
  *
@@ -6,11 +9,9 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
 
 class DateField extends AbstractModelField
 {
-
 
     /**
      * run
@@ -19,8 +20,16 @@ class DateField extends AbstractModelField
      */
     public function run() 
     {
-        $this->render('dateField/index');
-
+        return $this->render(
+            'dateField/index',
+            [
+                'model'       => $this->model,
+                'field'       => $this->field,
+                'htmlOptions' => $this->htmlOptions,
+                'inputId'     => $this->inputId,
+                'value'       => $this->value,
+                'label'       => $this->label
+            ]
+        );
     }
-
 }
