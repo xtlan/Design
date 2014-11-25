@@ -11,8 +11,12 @@ use yii\web\AssetBundle;
 class JqueryAsset extends AssetBundle
 {
 
+    public $sourcePath = '@bower/jquery';
+    public $js = [
+        'jquery.js'
+    ];
     public $depends = [
-        'yii\web\JqueryAsset'
+        //'yii\web\JqueryAsset'
     ];
 
 }

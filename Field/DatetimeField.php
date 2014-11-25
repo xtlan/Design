@@ -7,8 +7,7 @@
  * @author Kirya <cloudkserg11@gmail.com>
  */
 namespace Xtlan\Design\Field;
-use Xtlan\Core\Helper\DateHelper;
-use Xtlan\Core\Helper\DateTimeHelper;
+use Yii;
 
 class DatetimeField extends AbstractModelField
 {
@@ -34,12 +33,12 @@ class DatetimeField extends AbstractModelField
         //Создаем имя и ид для поля дейт от датетайм
         $dateId = "{$nameModel}_{$field}_date";
         $dateName = "{$nameModel}[{$field}_date]";
-        $dateValue = DateHelper::formatWeb($this->value);
+        $dateValue = Yii::$app->formatter->asDate($this->value, 'd.m.YYYY');
         
         //Создаем имя и ид для поля дейт от датетайм
         $timeId = "{$nameModel}_{$field}_time";
         $timeName = "{$nameModel}[{$field}_time]";
-        $timeValue = DateTimeHelper::formatTime($this->value);
+        $timeValue = Yii::$app->formatter->asTime($this->value);
 
         
         return $this->render(

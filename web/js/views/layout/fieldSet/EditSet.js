@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
             _setDatePickerDefaults();
             $('.f-fieldSetDate').datepicker({
                 showOn: "both",
-                buttonImage: "/i/date.png",
+                buttonImage: $('meta[name=design_asset_url]').attr('content') + "/i/date.png",
                 buttonImageOnly: true
             });
         };

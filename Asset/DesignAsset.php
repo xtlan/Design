@@ -17,7 +17,7 @@ class DesignAsset extends AssetBundle
     public $css = [
         'css/reset.css',
         'fonts/fonts.css',
-        'css/screen.css' 
+        'css/screen.css'
     ];
 
     public $js = [
@@ -32,7 +32,7 @@ class DesignAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'Xtlan\Design\Asset\JqueryAsset',
-        'Xtlan\Core\Asset\UnderscoreAsset'
+        'Xtlan\Design\Asset\UnderscoreAsset'
     ];
 
     public $jsOptions = [
@@ -42,5 +42,12 @@ class DesignAsset extends AssetBundle
     public $cssOptions = [
         'position' => View::POS_HEAD
     ];
+
+    public function registerAssetFiles($view)
+    {
+        parent::registerAssetFiles($view);
+
+        $view->registerMetaTag(['content' =>  $this->baseUrl, 'name' => 'design_asset_url'], 'design_asset_url');
+    }
 
 }
