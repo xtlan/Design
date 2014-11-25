@@ -2,7 +2,6 @@
     "name": "xtlan/design",
     "require": {
         "bower-asset/underscore": "1.4.3@stable",
-        // "bower-asset/jquery": "1.7.2",
         "bower-asset/jquery-ui": "1.10.3@stable"
     },
     "autoload": {
