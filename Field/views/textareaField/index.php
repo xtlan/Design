@@ -9,10 +9,12 @@ if ($fck) {
     $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/libs/ckeditor/ckeditor.js'));
     $this->registerJsFile(GetUrl::assetsUrl($this,  DesignAsset::className(), 'js/libs/ckeditor/adapters/jquery.js'));
     $this->registerJs( 
-        "jQuery('textarea.ckedit').ckeditor(function() {
-            toolbar : 'MyToolbar'
+        "jQuery(document).ready(function () {
+            jQuery('textarea.ckedit').ckeditor(function() {
+                toolbar : 'MyToolbar'
+            });
         });",
-        View::POS_READY,
+        View::POS_END,
         'fck_textarea');
 }
 ?>

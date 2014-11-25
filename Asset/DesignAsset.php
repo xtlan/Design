@@ -30,7 +30,7 @@ class DesignAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
+        'Xtlan\Design\Asset\YiiAsset',
         'Xtlan\Design\Asset\JqueryAsset',
         'Xtlan\Design\Asset\UnderscoreAsset'
     ];

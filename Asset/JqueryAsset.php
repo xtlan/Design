@@ -1,6 +1,8 @@
 <?php
 namespace Xtlan\Design\Asset;
 use yii\web\AssetBundle;
+use yii\web\View;
+
 /**
  * JqueryAsset
  *
@@ -18,6 +20,7 @@ class JqueryAsset extends AssetBundle
     public $depends = [
         //'yii\web\JqueryAsset'
     ];
+    
 
 }
 

@@ -32,13 +32,13 @@ class DatetimeField extends AbstractModelField
 
         //Создаем имя и ид для поля дейт от датетайм
         $dateId = "{$nameModel}_{$field}_date";
-        $dateName = "{$nameModel}[{$field}_date]";
-        $dateValue = Yii::$app->formatter->asDate($this->value, 'd.m.YYYY');
+        $dateName = "{$nameModel}[{$field}Date]";
+        $dateValue = Yii::$app->dateFormatter->formatWeb($this->value);
         
         //Создаем имя и ид для поля дейт от датетайм
         $timeId = "{$nameModel}_{$field}_time";
-        $timeName = "{$nameModel}[{$field}_time]";
-        $timeValue = Yii::$app->formatter->asTime($this->value);
+        $timeName = "{$nameModel}[{$field}Time]";
+        $timeValue = Yii::$app->datetimeFormatter->formatTime($this->value);
 
         
         return $this->render(
