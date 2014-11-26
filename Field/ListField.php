@@ -2,6 +2,8 @@
 
 namespace Xtlan\Design\Field;
 
+use Xtlan\Core\Helper\ArrayHelper;
+
 /**
  * ListField
  *
@@ -84,8 +86,7 @@ class ListField extends AbstractModelField
     public function getOptions()
     {
         if (!isset($this->_options)) {
-            $modelRelation = $this->getModelRelationByField($this->field);
-            $this->_options = $modelRelation->getData();
+            $this->_options = $this->getRelationOptions($this->field);
         }
         return $this->_options;
     }
@@ -125,22 +126,18 @@ class ListField extends AbstractModelField
     }
 
     /**
-    * getModelRelationByField
+    * getRelationOptions
     *
     * @param string $field
     * @return CActiveRecord
     */
-    private function getModelRelationByField($field)
+    private function getRelationOptions($field)
     {
-        $nameModelRelation = '';
+        list($relationName, $fieldName) = explode('_', $field);
+        $relationClass = $this->model->getRelation($relationName)->modelClass;
+        $relationQuery = $relationClass::find();
 
-        $fieldParts = explode('_', $field);
-        foreach ($fieldParts as $el ) {
-            if ($el != 'id') {
-                $nameModelRelation .= ucfirst($el);
-            }
-        } 
 
-        return new $nameModelRelation();
+        return ArrayHelper::map($relationQuery->all(), $fieldName, 'title');
     }
 }

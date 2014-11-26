@@ -20,7 +20,7 @@ use Xtlan\Core\Helper\DateHelper;
                     array(
                         'id' => $inputId,
                         'class' => 'f-fieldSetDate ' . $htmlOptions['class'],
-                        'value' => Yii::$app->formatter->asDate($value, 'd.M.Y')
+                        'value' => Yii::$app->dateFormatter->formatWeb($value)
                     )
                 )
             );
