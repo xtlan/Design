@@ -6,7 +6,9 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
+namespace Xtlan\Design\Field;
+
+use yii\db\ActiveRecordInteface;
 
 class TagsField extends AbstractModelField
 {
@@ -25,51 +27,16 @@ class TagsField extends AbstractModelField
      *
      * @var string
      */
-    private $_urlList;
-
-
-    /**
-     * Gets the value of urlList
-     *
-     * @return string
-     */
-    public function getUrlList()
-    {
-        return $this->_urlList;
-    }
+    public $urlList;
 
     /**
-     * Sets the value of urlList
+     * valueField
      *
-     * @param string $urlList 
+     * @var string
      */
-    public function setUrlList($urlList)
-    {
-        $this->_urlList = $urlList;
-        return $this;
-    }
+    public $valueField;
 
 
-    /**
-     * Gets the value of valueField
-     *
-     * @return string
-     */
-    public function getValueField()
-    {
-        return $this->_valueField;
-    }
-
-    /**
-     * Sets the value of valueField
-     *
-     * @param string $valueField 
-     */
-    public function setValueField($valueField)
-    {
-        $this->_valueField = $valueField;
-        return $this;
-    }
 
 
 
@@ -100,7 +67,19 @@ class TagsField extends AbstractModelField
      */
     public function run() 
     {
-        $this->render('tagsField/index');
+        return $this->render(
+            'tagsField/index',
+            [
+                'inputName'   => $this->inputName,
+                'inputId'     => $this->inputId,
+                'label'       => $this->getLabel(),
+                'value'       => $this->getValue(),
+                'errors'      => $this->errors,
+                'htmlOptions' => $this->htmlOptions
+
+                'urlList' => $this->urlList
+            ]
+        );
     }
 
 
@@ -115,10 +94,10 @@ class TagsField extends AbstractModelField
         $values = array();
 
         if (!empty($ids)) {
-            $modelRelation = $this->getModelRelationByField($this->field);
-            $items = $modelRelation->findAllByPk($ids);
+            $relationClass = $this->model->getRelation($this->field)->modelClass;
 
-            $values = \CHtml::listData($items, 'id', $this->valueField);
+            $items = $relationClass::find()->andWhere(['id' => $ids])->all();
+            $values = ArrayHelper::getColumn($items, 'id');
         }
 
         return $values;
@@ -130,7 +109,7 @@ class TagsField extends AbstractModelField
      * @param array $items
      * @return array
      */
-    private function getValueByItems($items)
+    private function getValueByItems(array $items)
     {
         $values = array();
         foreach ($items as $item) {
@@ -148,28 +127,11 @@ class TagsField extends AbstractModelField
     private function isItems(array $values)
     {
         if (isset($values[0])) {
-            return $values[0] instanceof CActiveRecord;
+            return $values[0] instanceof ActiveRecordInteface;
         }
         return false;
     }
 
-    /**
-     * getModelRelationByField
-     *
-     * @param string $field
-     * @return CActiveRecord
-     */
-    private function getModelRelationByField($field)
-    {
-        $nameRelation = $field;
-        $activeRelation = $this->model->getActiveRelation($nameRelation);
-        if (!isset($activeRelation)) {
-            throw new \Exception("relation with name $nameRelation not exit.");
-        }
-        $classRelation = $activeRelation->className;
-
-        return new $classRelation();
-    }
 
 
 

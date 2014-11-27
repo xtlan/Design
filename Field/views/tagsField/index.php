@@ -1,15 +1,27 @@
 <?php
-Yii::app()->clientScript->registerPackage('cms.tags'); 
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
 ?>
 <p>
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
+    <?php if (!empty($errors)) : ?>
+        <p>Обнаружена ошибка</p>
+    <?php endif; ?>
+
     <div class="tags">
-        <?php foreach($this->value as $value => $name) : ?>
-            <?php $this->render('tagsField/_template', array('name' => CHtml::encode($name), 'value' => $value))?>
+        <?php foreach($value as $val => $name) : ?>
+            <?php $this->render('_template', array('name' => Html::encode($name), 'value' => $val))?>
         <?php endforeach; ?>
-        <input url_t="<?=$this->urlList?>" name_t="<?=$this->inputName?>" class="selects" placeholder="<?=$this->label?>" 
+        <input url_t="<?=$urlList?>" name_t="<?=$inputName?>" class="selects" placeholder="<?=$label?>" 
             data-template="
-                <?php $this->render('tagsField/_template', array('name' => '${name}', 'value' => '${value}'))?>
+                <?php $this->render('_template', array('name' => '${name}', 'value' => '${value}'))?>
             "
         />
     </div>

@@ -6,10 +6,34 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
+namespace  Xtlan\Design\Field;
+use Xtlan\Core\Helper\ArrayHelper;
 
 class RelationsField extends AbstractModelField
 {
+    const LIST_TYPE = 'list';
+    const MARK_TYPE = 'index';
+
+    /**
+     * placeholder
+     *
+     * @var string
+     */
+    public $placeholder;
+
+    /**
+     * type
+     *
+     * @var string list or string
+     */
+    public $type = self::MARK_TYPE;
+
+    /**
+     * relation
+     *
+     * @var string name
+     */
+    public $relation;
 
     /**
      * _options
@@ -27,8 +51,7 @@ class RelationsField extends AbstractModelField
     public function getOptions()
     {
         if (!isset($this->_options)) {
-            $modelRelation = $this->getModelRelationByField($this->field);
-            $this->_options = $modelRelation->getData();
+            $this->_options = $this->getRelationOptions($this->relation);
         }
         return $this->_options;
     }
@@ -45,16 +68,16 @@ class RelationsField extends AbstractModelField
     }
 
     /**
-     * getValue
+     * Gets the value of value
      *
      * @return mixed
      */
     public function getValue()
     {
         if (!isset($this->_value)) {
-            $this->_value = $this->getRelationIdsByField($this->field);
+            $field = $this->field;
+            $this->_value = $this->model->$field;
         }
-        
         return $this->_value;
     }
     
@@ -68,47 +91,38 @@ class RelationsField extends AbstractModelField
      */
     public function run()
     {
-        $this->render('relationsField/index');
+        return $this->render(
+            'relationsField/' . $this->type,
+            [
+                'inputName'   => $this->inputName,
+                'inputId'     => $this->inputId,
+                'label'       => $this->getLabel(),
+                'value'       => $this->getValue(),
+                'errors'      => $this->errors,
 
+                'options'     => $this->getOptions(),
+                'placeholder' => $this->placeholder,
+
+                'htmlOptions' => $this->htmlOptions
+            ]
+        );
     }
 
     /**
-     * getModelRelationByField
+     * getRelationOptions
      *
-     * @param string $field
-     * @return CActiveRecord
+     * @param string $relationName
+     * @return array
      */
-    protected function getModelRelationByField($field)
+    protected function getRelationOptions($relationName)
     {
-        $nameRelation = $field;
-        $activeRelation = $this->model->getActiveRelation($nameRelation);
-        if (!isset($activeRelation)) {
-            throw new \Exception("relation with name $nameRelation not exit.");
-        }
-        $classRelation = $activeRelation->className;
+        $relationClass = $this->model->getRelation($relationName)->modelClass;
+        $relationQuery = $relationClass::find();
 
-        return new $classRelation();
+        return ArrayHelper::map($relationQuery->all(), 'id', 'title');
+    
     }
 
-    /**
-     * getRelationIdsByField
-     *
-     * @param string $field
-     * @return array array(11,12,13)
-     */
-    private function getRelationIdsByField($field)
-    {
-        $relationIds = array();
-        foreach ($this->model->getRelation($field) as $item) {
-            if ($item instanceof \CActiveRecord) {
-                $relationIds[] = $item->primaryKey;
-            } else {
-                $relationIds[] = $item;
-            }
-        }
-
-        return $relationIds;
-    }
 
 
 }
