@@ -112,7 +112,6 @@ class ListField extends AbstractModelField
         return $this->render(
             'listField/index',
             [
-                'errors'      => $this->errors,
                 'inputName'   => $this->inputName,
                 'value'       => $this->value,
                 'options'     => $this->getOptions(),
