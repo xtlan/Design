@@ -1,17 +1,28 @@
+<?php
+use yii\helpers\Html;
+use Xtlan\Core\Helper\ArrayHelper;
+?>
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
     <div class="viewFieldSet__content__desc">
         <!-- Числовое полe -->
-        <?php echo CHtml::tag(
+        <?php echo Html::tag(
             'input',
-            array_merge(
-                $this->htmlOptions,
+            '',
+            ArrayHelper::merge(
+                $htmlOptions,
                 array(
-                    'type' => 'number',
-                    'name' => $this->inputName,
-                    'id' => $this->inputId,
-                    'value' => $this->value,
-                    'class' => 'f-fieldSetLimit ' . $this->htmlOptions['class']
+                    'type'  => 'number',
+                    'name'  => $inputName,
+                    'id'    => $inputId,
+                    'value' => $value,
+                    'class' => 'f-fieldSetLimit ' . $htmlOptions['class']
                 )
             )
         ); ?>

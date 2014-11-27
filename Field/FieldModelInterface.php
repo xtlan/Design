@@ -1,5 +1,4 @@
 <?php
-namespace Design\Field;
 /**
  * FieldModelInterface
  *
@@ -7,6 +6,8 @@ namespace Design\Field;
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
+namespace Xtlan\Design\Field;
+
 interface FieldModelInterface
 {
 
@@ -24,7 +25,5 @@ interface FieldModelInterface
      * @return mixed
      */
     public function getAttribute($field);
-
-
 
 }

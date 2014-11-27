@@ -1,15 +1,25 @@
+<?php
+use yii\helpers\Html;
+use Xtlan\Core\Helper\ArrayHelper;
+?>
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
     <div class="viewFieldSet__content__desc">
         <!-- Password -->
-        <?php echo CHtml::passwordField(
-            $this->inputName,
+        <?php echo Html::passwordInput(
+            $inputName,
             '',
-            array_merge(
-                $this->htmlOptions,
+            ArrayHelper::merge(
+                $htmlOptions,
                 array(
-                    'id' => $this->inputId,
-                    'class' => 'f-fieldSetPass ' . $this->htmlOptions['class']
+                    'id' => $inputId,
+                    'class' => 'f-fieldSetPass ' . $htmlOptions['class']
                 )
             )
         ); ?>

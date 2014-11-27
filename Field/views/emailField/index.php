@@ -12,14 +12,17 @@ use Xtlan\Core\Helper\ArrayHelper;
     )?>
     <div class="viewFieldSet__content__desc">
         <!-- Email -->
-        <?php echo Html::textInput(
-            $inputName,
-            Html::encode($value),
+        <?php echo Html::tag(
+            'input',
+            '',
             ArrayHelper::merge(
                 $htmlOptions,
                 array(
-                    'id' => $inputId,
-                    'class' => 'f-fieldSetEmail ' . $htmlOptions['class']
+                    'type'    => 'email',
+                    'name'    => $inputName,
+                    'id'      => $inputId,
+                    'value'   => Html::encode($value),
+                    'class'   => 'f-fieldSetEmail ' . $htmlOptions['class'],
                 )
             )
         ); ?>

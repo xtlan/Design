@@ -6,7 +6,7 @@
  * @copyright Copyright 2011 by Kirya <cloudkserg11@gmail.com>
  * @author Kirya <cloudkserg11@gmail.com>
  */
-namespace Design\Field;
+namespace Xtlan\Design\Field;
 
 class PassField extends AbstractModelField
 {
@@ -18,8 +18,16 @@ class PassField extends AbstractModelField
      */
     public function run()
     {
-        $this->render('passField/index');
-
+        return $this->render(
+            'passField/index',
+            [
+                'errors'      => $this->errors,
+                'inputName'   => $this->inputName,
+                'value'       => $this->value,
+                'inputId'     => $this->inputId,
+                'htmlOptions' => $this->htmlOptions,
+                'label'       => $this->getLabel()
+            ]
+        );
     }
-
 }
