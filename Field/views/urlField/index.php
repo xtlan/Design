@@ -1,17 +1,28 @@
+<?php
+use yii\helpers\Html;
+use Xtlan\Core\Helper\ArrayHelper;
+?>
 <div class="viewFieldSet__content__row">
-    <?=$this->render('textField/label')?>
+    <?=$this->render(
+        '../textField/label',
+        [
+            'inputId' => $inputId,
+            'label'   => $label
+        ]
+    )?>
     <div class="viewFieldSet__content__desc">
         <!-- URl -->
-        <?php echo  CHtml::tag(
+        <?php echo  Html::tag(
             'input',
-            array_merge(
-                $this->htmlOptions,
+            '',
+            ArrayHelper::merge(
+                $htmlOptions,
                 array(
-                    'type' => 'url',
-                    'class' => 'f-fieldSetUrl ' . $this->htmlOptions['class'],
-                    'id' => $this->inputId,
-                    'value' => $this->value,
-                    'name' => $this->inputName
+                    'type'  => 'url',
+                    'name'  => $inputName,
+                    'id'    => $inputId,
+                    'value' => $value,
+                    'class' => 'f-fieldSetUrl ' . $htmlOptions['class']
                 )
             )
         ); ?>

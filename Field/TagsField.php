@@ -75,9 +75,8 @@ class TagsField extends AbstractModelField
                 'label'       => $this->getLabel(),
                 'value'       => $this->getValue(),
                 'errors'      => $this->errors,
-                'htmlOptions' => $this->htmlOptions
-
-                'urlList' => $this->urlList
+                'htmlOptions' => $this->htmlOptions,
+                'urlList'     => $this->urlList
             ]
         );
     }
