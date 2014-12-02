@@ -4,6 +4,7 @@ namespace Xtlan\Design\Controller\Action\Crud;
 use yii\base\Action as BaseAction;
 use yii\base\Model;
 use Xtlan\Core\Helper\GetUrl;
+use yii\web\NotFoundHttpException;
 use Yii;
 
 /**

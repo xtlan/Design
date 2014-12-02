@@ -65,11 +65,12 @@ class AddAction extends Action
      */
     public function run()
     {
+
         $creatorClosure = $this->creator;
         $item = $creatorClosure();
 
         if (!$item->save()) {
-            $this->flashErrors($item);
+            $this->controller->flashErrors($item);
             return $this->controller->redirect($this->getRedirectUrl($item));
         }
 

@@ -26,6 +26,7 @@ class DeleteAction extends Action
      */
     public function run()
     {
+
         $ids = $this->getIds();
         $items = $this->findItems($ids);
 
