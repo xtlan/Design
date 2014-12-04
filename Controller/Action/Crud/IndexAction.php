@@ -92,11 +92,7 @@ class IndexAction extends Action
          
         $filter = null;
         if (isset($this->filterName)) {
-            $filter = new $this->filterName;
-            $filter->load(Yii::$app->request->queryParams);
-            if (!$filter->validate()) {
-                throw new NotFoundHttpException('Фильтр неверный');
-            }
+            $filter = $this->controller->getFilter($this->filterName, Yii::$app->request->queryParams);
             $query = $filter->search($query);
         }
 
