@@ -13,7 +13,7 @@ use yii\web\View;
 class JqueryDragSortAsset extends AssetBundle
 {
 
-    public $sourcePath = '@vendor/xtlan/design/web';
+    public $sourcePath = '@vendor/xtlan/design/resources';
     public $js = [
         'js/libs/jquery.dragsort-0.5.2.min.js'
     ];

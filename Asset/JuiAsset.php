@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
  */
 class JuiAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/xtlan/design/web';
+    public $sourcePath = '@vendor/xtlan/design/resources';
     public $js = [
         'js/libs/jquery-ui-1.10.3.custom.js'
     ];

@@ -11,7 +11,7 @@ use yii\web\AssetBundle;
 */
 class TimeAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/xtlan/design/web';
+    public $sourcePath = '@vendor/xtlan/design/resources';
 
     public $css = [
         'css/timepicker/style.css'

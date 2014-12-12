@@ -13,7 +13,7 @@ use yii\web\View;
 class JqueryAsset extends AssetBundle
 {
 
-    public $sourcePath = '@vendor/xtlan/design/web';
+    public $sourcePath = '@vendor/xtlan/design/resources';
     public $js = [
         'js/libs/jquery-1.7.2.min.js'
     ];
