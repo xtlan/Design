@@ -1,7 +1,7 @@
 <?php if (isset($decade)) : ?>
     <nav class="pagination">
-        <?php if (isset($this->prevPage)) {
-            $prevLink = $this->getUrl($this->prevPage);
+        <?php if (isset($this->context->prevPage)) {
+            $prevLink = $this->context->getUrl($this->context->prevPage);
             $prevClass = '';
             } else { 
             $prevLink = '#';
@@ -14,12 +14,12 @@
 
             <?php if (!$decade->isFirst()) : ?>
                 <li>
-                    <a href="<?=$this->getUrl($this->startPage)?>">
+                    <a href="<?=$this->context->getUrl($this->context->startPage)?>">
                     1
                     </a>
                 </li>
                 <li>
-                    <a href="<?=$this->getUrl($decade->startPage - 1)?>">
+                    <a href="<?=$this->context->getUrl($decade->startPage - 1)?>">
                     …
                     </a>
                 </li>
@@ -28,7 +28,7 @@
 
             <?php foreach ($decade->pages as $page) : ?>
                 <li class="<?= ($page == $currentPage)? 'active' : '' ?>">
-                    <a href="<?= $this->getUrl($page) ?>" title="">
+                    <a href="<?= $this->context->getUrl($page) ?>" title="">
                         <?= $page ?>
                     </a>
                 </li>
@@ -36,19 +36,19 @@
             
             <?php if (!$decade->isLast()) : ?>
                 <li>
-                    <a href="<?=$this->getUrl($decade->endPage + 1)?>">
+                    <a href="<?=$this->context->getUrl($decade->endPage + 1)?>">
                     …
                     </a>
                 </li>
                 <li>
-                    <a href="<?=$this->getUrl($this->endPage)?>">
-                    <?=$this->endPage?>
+                    <a href="<?=$this->context->getUrl($this->context->endPage)?>">
+                    <?=$this->context->endPage?>
                     </a>
                 </li>
             <?php endif; ?>
         </ul>
-        <?php if (isset($this->nextPage)) {
-                $nextLink = $this->getUrl($this->nextPage);
+        <?php if (isset($this->context->nextPage)) {
+                $nextLink = $this->context->getUrl($this->context->nextPage);
                 $nextClass = '';
             } else { 
                 $nextLink = '#';
