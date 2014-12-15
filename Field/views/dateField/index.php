@@ -1,6 +1,11 @@
 <?php
 use yii\helpers\Html;
-use Xtlan\Core\Helper\DateHelper;
+use Xtlan\Design\Asset\DesignAsset;
+use Xtlan\Design\Asset\JuiAsset;
+use Xtlan\Core\Helper\GetUrl;
+
+$this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/views/layout/fieldSet/EditSet.js'));
+JuiAsset::register($this);
 ?>
 <div class="viewFieldSet__content__row">
     <?=$this->render(
