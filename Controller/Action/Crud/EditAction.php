@@ -63,6 +63,7 @@ class EditAction extends Action
             $afterSave = $this->getAfterSave();
             $afterSave($item);
 
+            Yii::$app->session->setFlash('success', 'Объект сохранен.');
             return $this->sendRedirect($item);
         }
 
