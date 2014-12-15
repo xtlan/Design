@@ -43,11 +43,17 @@ class ActiveDataProvider extends BaseProvider implements DataProviderInterface
      */
     protected function prepareModels()
     {
-        return parent::prepareModels();
-        $this->addPrevNextRow();
+        $query = clone $this->query;
+        if (($pagination = $this->getPagination()) !== false) {
+            $pagination->totalCount = $this->getTotalCount();
+            $query->limit($pagination->getLimit())->offset($pagination->getOffset());
+        }
+        if (($sort = $this->getSort()) !== false) {
+            $query->addOrderBy($sort->getOrders());
+        }
+        $this->addPrevNextRow($query);
 
-        //Вытаскиваем строки
-        $this->_allModels = parent::prepareModels();
+        $this->_allModels =  $query->all($this->db);
         
         return $this->cutPrevNextRow();
     }
@@ -130,16 +136,16 @@ class ActiveDataProvider extends BaseProvider implements DataProviderInterface
      *
      * @return void
      */
-    private function addPrevNextRow()
+    private function addPrevNextRow($query)
     {
 
         if (!$this->isFirstPage()) {
-            $this->query->offset = $this->query->offset - 1;
-            $this->query->limit++;
+            $query->offset--;
+            $query->limit++;
         }
         
         if (!$this->isLastPage()) {
-            $this->query->limit++;
+            $query->limit++;
         }
 
     }
