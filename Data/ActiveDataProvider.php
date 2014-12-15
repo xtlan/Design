@@ -43,6 +43,7 @@ class ActiveDataProvider extends BaseProvider implements DataProviderInterface
      */
     protected function prepareModels()
     {
+        return parent::prepareModels();
         $this->addPrevNextRow();
 
         //Вытаскиваем строки

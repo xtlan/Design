@@ -103,8 +103,9 @@ class IndexAction extends Action
                 'page' => ($page -1)
             ]
         ]);
-
+var_dump($page);
         GetUrl::remember();
+        $provider->prepare();
 
         return $this->controller->render(
             'index',
