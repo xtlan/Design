@@ -72,4 +72,15 @@ abstract class FilterElement extends Widget
      * renderSaveElement
      */
     abstract public function renderSaveElement();
+
+    /**
+     * getType
+     *
+     * @return void
+     */
+    public function getType()
+    {
+        return static::TYPE;
+    }
+
 }

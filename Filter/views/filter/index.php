@@ -41,7 +41,7 @@ $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/vie
                     <select id="f-filterTypeList" class="chosen-single" name="">
                         <option value="" selected="selected">Выберите условие</option>
                         <?php foreach ($elements as $element):?>
-                            <option value="<?=$element->id?>">
+                            <option value="<?=$element->fieldId?>">
                                 <?=$element->title?>
                             </option>
                         <?php endforeach;?>

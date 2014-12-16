@@ -37,7 +37,7 @@ class Filter extends Widget
         foreach ($this->elements as $element) {
             $element->model = $this->model;
         }
-        $this->render('filter/index', ['filterUrl' => $filterUrl, 'elements' => $this->elements]);
+        return $this->render('filter/index', ['filterUrl' => $filterUrl, 'elements' => $this->elements]);
     }
     
     /**

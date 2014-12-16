@@ -5,7 +5,7 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Filter;
+namespace Xtlan\Design\Filter;
 
 class ListElement extends FilterElement
 {
@@ -62,12 +62,15 @@ class ListElement extends FilterElement
      */
     public function renderElement()
     {
-        $this->renderFile(
-            'listElement/index.php',
-            array(
+        return $this->render(
+            'listElement/index',
+            [
+                'id' => $this->getFieldId(),
+                'model' => $this->model,
+                'field' => $this->_field,
                 'options' => $this->_options,
                 'prompt'  => $this->_prompt
-            )
+            ]
         );
     }
 
@@ -79,10 +82,13 @@ class ListElement extends FilterElement
     public function renderSaveElement()
     {
         $value = isset($this->_options[$this->value]) ? $this->_options[$this->value] : $this->value;
-        $this->renderFile(
-            'listElement/save.php',
+        return $this->render(
+            'listElement/save',
             array(
-                'title' => $this->title,
+                'id' => $this->getFieldId(),
+                'model' => $this->model,
+                'field' => $this->_field,
+                'title' => $this->getTitle(),
                 'value' => $value
             )
         );

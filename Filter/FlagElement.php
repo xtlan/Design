@@ -5,7 +5,7 @@
  *
  * @author art3mk4 <Art3mk4@gmail.com>
  */
-namespace Design\Filter;
+namespace Xtlan\Design\Filter;
 
 class FlagElement extends FilterElement
 {
@@ -46,8 +46,8 @@ class FlagElement extends FilterElement
      */
     public function renderElement()
     {
-        $this->renderFile(
-            'flagElement/index.php',
+        return $this->render(
+            'flagElement/index',
             array(
                 'options' => $this->_options
             )
@@ -61,8 +61,8 @@ class FlagElement extends FilterElement
      */
     public function renderSaveElement()
     {
-        $this->renderFile(
-            'flagElement/save.php',
+        return $this->render(
+            'flagElement/save',
             array(
                 'title' => $this->title,
                 'value' => $this->value

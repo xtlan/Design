@@ -1,6 +1,10 @@
-<p class="filterValue__text" data-id="<?=$this->id?>">
-    <?="$title: "?><span class="filterValue__saveText"><?=$this->startEndString?></span>
+<?php
+use yii\helpers\Html;
+/* @var $this \yii\web\View */
+?>
+<p class="filterValue__text" data-id="<?=$id?>">
+    <?="$title: "?><span class="filterValue__saveText"><?=$startEndString?></span>
     <i class="i-deleteFilter"></i>
-    <?=\CHtml::activeHiddenField($this->_model, $startField, array('class' => 'hidden__startDate'))?>
-    <?=\CHtml::activeHiddenField($this->_model, $endField, array('class' => 'hidden__endDate'))?>
+    <?=Html::activeHiddenInput($model, $startField, array('class' => 'hidden__startDate'))?>
+    <?=Html::activeHiddenInput($model, $endField, array('class' => 'hidden__endDate'))?>
 </p>

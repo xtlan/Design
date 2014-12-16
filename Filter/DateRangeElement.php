@@ -1,5 +1,8 @@
 <?php
-namespace Design\Filter;
+namespace Xtlan\Design\Filter;
+
+use yii\helpers\Html;
+
 /**
  * DateRangeElement
  *
@@ -43,13 +46,13 @@ class DateRangeElement extends FilterElement
     }
 
     /**
-     * getId
+     * getFieldId
      * 
      * @return string
      */
-    public function getId()
+    public function getFieldId()
     {
-        return \CHtml::activeId($this->_model, $this->_startField);
+        return Html::getInputId($this->model, $this->_startField);
     }
 
     /**
@@ -69,8 +72,8 @@ class DateRangeElement extends FilterElement
      */
     public function hasSaveElement()
     {
-        $startField = $this->_model->getAttribute($this->_startField);
-        $endField = $this->_model->getAttribute($this->_endField);
+        $startField = $this->getStartValue();
+        $endField = $this->getEndValue();
         if (isset($startField)
             || isset($endField)
         ) {
@@ -86,9 +89,12 @@ class DateRangeElement extends FilterElement
      */
     public function renderElement()
     {
-        $this->renderFile(
-            'dateRangeElement/index.php',
+        return $this->render(
+            'dateRangeElement/index',
             array(
+                'id' => $this->getFieldId(),
+                'model' => $this->model,
+                'field' => $this->_field,
                 'startField' => $this->_startField,
                 'endField'   => $this->_endField
             )
@@ -102,12 +108,16 @@ class DateRangeElement extends FilterElement
      */
     public function renderSaveElement()
     {
-        $this->renderFile(
-            'dateRangeElement/save.php',
+        return $this->render(
+            'dateRangeElement/save',
             array(
+                'id' => $this->getFieldId(),
+                'model' => $this->model,
+                'field' => $this->_field,
                 'title'      => $this->title,
                 'startField' => $this->_startField,
-                'endField'   => $this->_endField
+                'endField'   => $this->_endField,
+                'startEndString' => $this->getStartEndString()
             )
         );
     }
@@ -119,7 +129,8 @@ class DateRangeElement extends FilterElement
      */
     protected function getStartValue()
     {
-        return $this->model->getAttribute($this->_startField);
+        $startField = $this->_startField;
+        return $this->model->$startField;
     }
 
     /**
@@ -129,7 +140,8 @@ class DateRangeElement extends FilterElement
      */
     protected function getEndValue()
     {
-        return $this->model->getAttribute($this->_endField);
+        $endField = $this->_endField;
+        return $this->model->$endField;
     }
 
     /**

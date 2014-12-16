@@ -1,7 +1,10 @@
-
-<div class="filterForm__col" data-id="<?=$this->id?>" data-type="<?= Design\Filter\DateRangeElement::TYPE?>">
+<?php
+use yii\helpers\Html;
+/* @var $this \yii\web\View */
+?>
+<div class="filterForm__col" data-id="<?=$id?>" data-type="<?= $this->context->getType()?>">
     <label for="f-dateStart">От</label>
-    <input id="f-dateStart" class="chosen-single" name="<?= \CHtml::activeName($this->_model, $startField)?>" type="text" />
+    <input id="f-dateStart" class="chosen-single" name="<?= Html::getInputName($model, $startField)?>" type="text" />
     <label for="f-dateEnd">До</label>
-    <input id="f-dateEnd" class="chosen-single" name="<?= \CHtml::activeName($this->_model, $endField)?>" type="text" />
+    <input id="f-dateEnd" class="chosen-single" name="<?= Html::getInputName($model, $endField)?>" type="text" />
 </div>
