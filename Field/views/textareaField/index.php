@@ -6,16 +6,8 @@ use yii\web\View;
 /* @var $this \yii\web\View */
 
 if ($fck) {
-    $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className(), 'js/libs/ckeditor/ckeditor.js'));
-    $this->registerJsFile(GetUrl::assetsUrl($this,  DesignAsset::className(), 'js/libs/ckeditor/adapters/jquery.js'));
-    $this->registerJs( 
-        "jQuery(document).ready(function () {
-            jQuery('textarea.ckedit').ckeditor(function() {
-                toolbar : 'MyToolbar'
-            });
-        });",
-        View::POS_END,
-        'fck_textarea');
+    $this->registerJsFile(GetUrl::assetsUrl($this, DesignAsset::className() ,'js/libs/ckeditor/ckeditor.js'), array('position' => 2));
+    $this->registerJsFile(GetUrl::assetsUrl($this,  DesignAsset::className(), 'js/libs/ckeditor/adapters/jquery.js'), array('position' => 2));
 }
 ?>
 
@@ -45,4 +37,13 @@ if ($fck) {
             )
         ); ?>
     </div>
+<?php if ($fck) :?>
+    <script type="text/javascript">
+        CKEDITOR.replace(<?php echo $inputId ?>,
+            {
+                filebrowserUploadUrl: '/admin/file/default/ckeditor?model=<?php echo (new \ReflectionClass($model))->getShortName()?>'
+            }
+        ); 
+    </script>
+<?php endif;?>
 </div>

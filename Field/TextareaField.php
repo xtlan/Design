@@ -92,7 +92,8 @@ class TextareaField extends AbstractModelField
                 'inputId' => $this->inputId,
                 'htmlOptions' => $this->htmlOptions,
                 'label' => $this->getLabel(),
-                'fck' => $this->getFck()
+                'fck' => $this->getFck(),
+                'model' => $this->model
             ]
         );
     }
