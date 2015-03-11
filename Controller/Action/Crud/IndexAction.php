@@ -37,6 +37,18 @@ class IndexAction extends Action
      * @var string
      */
     public $filterName;
+    
+    /**
+     * 
+     * @var unknown
+     */
+    public $order;
+    
+    /**
+     * 
+     * @var unknown
+     */
+    public $dir;
 
     /**
      * query
@@ -81,15 +93,14 @@ class IndexAction extends Action
     {
         $page = (int)Yii::$app->request->getQueryParam('page', 1);
         $order = Yii::$app->request->getQueryParam('order', null);
+        $order = !isset($order) ? $this->order : $order; 
         $dir = Yii::$app->request->getQueryParam('dir', null);
+        $dir = !isset($dir) ? $this->dir : $dir;
 
 
         $queryClosure = $this->query;
         $query = $queryClosure();
 
-        $query->sort($order, $dir);
-
-         
         $filter = null;
         if (isset($this->filterName)) {
             $filter = $this->controller->getFilter($this->filterName, Yii::$app->request->queryParams);
@@ -101,8 +112,14 @@ class IndexAction extends Action
             'pagination' => [
                 'pageSize' => $this->pageSize,
                 'page' => ($page -1)
-            ]
+            ],
         ]);
+        
+        if (isset($order) && isset($dir)) {
+            $provider->setSort([
+                'defaultOrder' => [$order => $dir]
+            ]);            
+        }
 
         GetUrl::remember();
         $provider->prepare();
