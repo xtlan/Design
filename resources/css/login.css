@@ -19,16 +19,16 @@ body {
 #loginForm {
   width: 400px;
   margin: 0 auto;
-  background: white;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0px;
+  background: #FFF;
   -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0px;
   padding: 20px 0px 10px 0px;
 }
 
 .login__title {
   font-size: 1.8em;
-  color: #65ca60;
+  color: #65CA60;
   margin-left: 44px;
   margin-bottom: 10px;
 }
@@ -41,9 +41,9 @@ body {
 }
 
 .focusElement {
-  background: #f6f6f6;
-  border-left: 4px solid #3ccbff;
-  border-right: 4px solid #3ccbff;
+  background: #F6F6F6;
+  border-left: 4px solid #3CCBFF;
+  border-right: 4px solid #3CCBFF;
 }
 
 .autherror #log, .autherror #password {
@@ -53,7 +53,7 @@ body {
 #log, #password {
   height: 34px;
   width: 290px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid #E2E2E2;
   padding: 0px 10px;
   font-size: 1.4em;
 }
@@ -73,16 +73,16 @@ body {
 .loginForm__col label {
   font-size: 1.3em;
   margin-left: 5px;
-  color: #adadad;
+  color: #ADADAD;
 }
 
 #logPassButton {
   float: right;
-  background: #65ca60;
-  border: 1px solid #47b240;
+  background: #65CA60;
+  border: 1px solid #47B240;
   color: white;
-  -webkit-box-shadow: #75d170 0 0 1px 0px inset;
   -moz-box-shadow: #75d170 0 0 1px 0px inset;
+  -webkit-box-shadow: #75d170 0 0 1px 0px inset;
   box-shadow: #75d170 0 0 1px 0px inset;
   width: 80px;
   height: 34px;
@@ -104,12 +104,12 @@ body {
   float: left;
 }
 #footer p a {
-  color: #3ccbff;
+  color: #3CCBFF;
 }
 #footer small {
   font-size: 1.3em;
   float: right;
 }
 #footer small a {
-  color: #3ccbff;
+  color: #3CCBFF;
 }

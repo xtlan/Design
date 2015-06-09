@@ -6,7 +6,7 @@
 .pagination__prevBtn, .pagination__nextBtn {
   font: 1.4em "Arial", sans-serif;
   display: inline-block;
-  color: #0085b2;
+  color: #0085B2;
   position: relative;
   top: -2px;
 }
@@ -20,7 +20,7 @@
 }
 
 .pagination__prevBtn.disabled, .pagination__nextBtn.disabled {
-  color: #a8a8b7;
+  color: #A8A8B7;
 }
 
 .pagination__list {
@@ -29,22 +29,20 @@
 .pagination__list li {
   display: inline-block;
   font-size: 1.8em;
-  -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
+  -webkit-border-radius: 100px;
   border-radius: 100px;
   margin-left: 2px;
   margin-right: 2px;
 }
 .pagination__list li a {
-  color: #0085b2;
+  color: #0085B2;
   display: block;
   padding: 0px 6px;
   height: 22px;
 }
 .pagination__list .active {
-  background: #96bd3e;
+  background: #96BD3E;
 }
 .pagination__list .active a {
   color: white;

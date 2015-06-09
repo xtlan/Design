@@ -20,10 +20,10 @@ select option {
   display: block;
   font-size: 1.6em;
   margin-bottom: 5px;
-  color: #9797a5;
+  color: #9797A5;
 }
 .dataOpeatorForm__label sup {
-  color: #ff2626;
+  color: #FF2626;
   position: relative;
   top: 3px;
 }
@@ -46,7 +46,7 @@ select option {
 #f-operatorName, #f-operatorLogin, #f-operatorPassword {
   width: 84%;
   height: 35px;
-  border: 1px solid #cacad9;
+  border: 1px solid #CACAD9;
   padding: 0 8%;
   outline: none;
   font-size: 1.4em;
@@ -71,7 +71,7 @@ select option {
 
 .chosen-single {
   font-size: 1.3em;
-  border: 1px solid #cacad9;
+  border: 1px solid #CACAD9;
   width: 84%;
   padding: 0 8%;
   outline: none;
@@ -100,8 +100,8 @@ select option {
 }
 
 .chosen-drop {
-  background: white;
-  border: 1px solid #26c9ff;
+  background: #fff;
+  border: 1px solid #26C9FF;
   position: absolute;
   top: 100%;
   left: -9999px;
@@ -111,7 +111,7 @@ select option {
 }
 
 .chosen-with-drop .chosen-single {
-  border: 1px solid #26c9ff;
+  border: 1px solid #26C9FF;
 }
 .chosen-with-drop .chosen-drop {
   left: 0px;
@@ -131,17 +131,17 @@ select option {
   overflow: hidden;
 }
 .chosen-results li:hover {
-  background: #dbdbea;
+  background: #DBDBEA;
 }
 
 .highlighted {
-  background: #dbdbea;
+  background: #DBDBEA;
 }
 
 #f-operatorDescription {
   width: 84%;
   height: 101px;
-  border: 1px solid #cacad9;
+  border: 1px solid #CACAD9;
   padding: 5% 8%;
   outline: none;
   font-size: 1.4em;

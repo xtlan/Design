@@ -14,7 +14,6 @@
   color: white;
   line-height: 45px;
   display: block;
-  height: 100%;
   padding: 0 18px;
   position: relative;
   white-space: nowrap;
@@ -24,7 +23,7 @@
 }
 
 .openSubList a {
-  background: #609eab;
+  background: #609EAB;
 }
 .openSubList a:before {
   content: "";
@@ -49,7 +48,7 @@
 }
 
 .mainNav__sublist {
-  background: #609eab;
+  background: #609EAB;
   display: none;
 }
 .mainNav__sublist li {

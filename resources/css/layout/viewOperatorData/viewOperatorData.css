@@ -1,5 +1,10 @@
+@charset "UTF-8";
 #viewFieldSetContainer {
-  margin-right: -50px;
+  margin-right: 0px;
+}
+
+#viewFieldSetContainer_one_column {
+  margin-right: 10px;
 }
 
 .viewFieldSet__col {
@@ -18,7 +23,7 @@
   font-size: 1.8em;
   text-transform: uppercase;
   margin-bottom: 25px;
-  color: #337dbe;
+  color: #337DBE;
   display: inline-block;
   position: relative;
 }
@@ -39,7 +44,7 @@
 }
 
 .viewFieldSet__content {
-  border-bottom: 1px solid #cacad9;
+  border-bottom: 1px solid #CACAD9;
   display: none;
 }
 
@@ -53,7 +58,7 @@
 .viewFieldSet__content__row .viewFieldSet__content__label {
   width: 130px;
   float: left;
-  color: #9797a5;
+  color: #9797A5;
 }
 .viewFieldSet__content__row .viewFieldSet__content__desc {
   color: black;
@@ -94,7 +99,7 @@
 .f-fieldSetText, .f-fieldSetComment, .f-fieldSetDate, .f-fieldSetEmail, .f-fieldSetUrl, .f-fieldSetPass, .f-fieldSetLimit {
   height: 35px;
   border: 1px solid #cacad9;
-  width: 94%;
+  width: 100%;
   padding: 0px 10px;
   outline: none;
   font-size: 0.9em;
@@ -286,7 +291,7 @@
 .addAnswerBtn {
   width: 37px;
   height: 37px;
-  background: #96bd3e url(../i/comliteIco.png) center center no-repeat;
+  background: #96BD3E url(../i/comliteIco.png) center center no-repeat;
   margin-right: 8px;
   margin-top: 1px;
 }
@@ -294,7 +299,7 @@
 .deleteAnswerBtn {
   width: 37px;
   height: 37px;
-  background: #dfdfd0 url(../i/deleteIco.png) center center no-repeat;
+  background: #DFDFD0 url(../i/deleteIco.png) center center no-repeat;
   margin-top: 1px;
 }
 
@@ -363,8 +368,8 @@
   cursor: pointer;
 }
 .mainContent__header .systemMessage.error {
-  background: #e35f5b;
-  color: white;
+  background: #E35F5B;
+  color: #FFF;
 }
 
 .alert {
@@ -390,7 +395,7 @@
 
 .currentPlaceRow {
   height: 88px;
-  border: 1px solid #90eafa;
+  border: 1px solid #90EAFA;
 }
 
 .moveRow {
@@ -412,7 +417,7 @@
 }
 
 #ui-datepicker-div {
-  background: white;
+  background: #FFF;
   width: 188px;
   padding: 6px 6px;
   border: 1px solid #8ec1d7;
@@ -572,19 +577,15 @@
   margin-bottom: 15px;
   border: 0;
   border-bottom: 1px solid #388696;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
   height: 30px;
 }
 .ui-progressbar .ui-progressbar-value {
   background: #388696;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
   border-right: 0;
 }
@@ -765,12 +766,12 @@
   font-size: 3em;
   margin-left: -175px;
   margin-top: -22px;
-  background: white;
+  background: #FFF;
 }
 
 .m-active {
-  background: #e35f5b;
-  color: white;
+  background: #E35F5B;
+  color: #FFF;
 }
 .m-active:hover {
   background: #dc352f;
@@ -848,7 +849,7 @@
 }
 
 .error .chosen-drop, .error .chosen-single {
-  border: 1px solid #d83c00 !important;
+  border: 1px solid #D83C00 !important;
 }
 
 .monitorTab__list {
@@ -966,7 +967,7 @@
 
 .a-downloadLink {
   font-size: 1.5em;
-  color: #0085b2;
+  color: #0085B2;
   margin-bottom: 5px;
   display: block;
 }
@@ -1020,7 +1021,7 @@ table.tableView tr th:first-child {
   padding-left: 50px !important;
 }
 table.tableView tbody tr:nth-child(even) {
-  background: #eff8fa;
+  background: #EFF8FA;
 }
 table.tableView tbody tr:hover {
   background: #ebf3f4;
@@ -1065,7 +1066,7 @@ table.m-operatorStat__table tr td {
   cursor: pointer;
 }
 .clearDataBtnContainer .clearDataList__btn:hover {
-  background: #cacab2;
+  background: #CACAB2;
 }
 .clearDataBtnContainer .clearDataList__btn:before {
   content: "";
@@ -1079,7 +1080,7 @@ table.m-operatorStat__table tr td {
 .clearDataBtnContainer .chosen-container {
   vertical-align: top;
   width: 60%;
-  background: white;
+  background: #FFF;
 }
 .clearDataBtnContainer .chosen-container .chosen-drop {
   width: 160%;
@@ -1109,7 +1110,7 @@ table.m-operatorStat__table tr td {
   width: 30px;
 }
 .tooltipBtn:hover {
-  background: #cacab2 url(../i/bootstrap/img/glyphicons-halflings.png) -376px 7px no-repeat;
+  background: #CACAB2 url(../i/bootstrap/img/glyphicons-halflings.png) -376px 7px no-repeat;
 }
 
 .m-active.tooltipBtn {
@@ -1129,7 +1130,7 @@ table.m-operatorStat__table tr td {
 .tableContainerVisibleRow .chosen-container {
   clear: both;
   width: 90%;
-  background: white;
+  background: #FFF;
   display: none;
 }
 .tableContainerVisibleRow .chosen-container .chosen-single {
@@ -1188,10 +1189,10 @@ table.m-operatorStat__table tr td {
   position: relative;
   margin: 0px 3px 3px 0px;
   padding: 1px 20px 1px 5px;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #aaa;
   background-color: #dfdfd0;
   background-clip: padding-box;
-  color: #333333;
+  color: #333;
   line-height: 13px;
   cursor: default;
 }
@@ -1270,7 +1271,7 @@ table.m-operatorStat__table tr td {
 .genericCompany__form label {
   display: inline-block;
   vertical-align: top;
-  color: #9797a5;
+  color: #9797A5;
   font-size: 1.4em;
   margin-right: 5px;
   width: 80px;

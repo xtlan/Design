@@ -3,7 +3,7 @@
   table-layout: fixed;
 }
 .tableView tbody tr td {
-  border-bottom: 1px solid #dbdbea;
+  border-bottom: 1px solid #DBDBEA;
   vertical-align: top;
 }
 .tableView tbody tr td:first-child {
@@ -13,7 +13,7 @@
   border-bottom: 0;
 }
 .tableView tbody tr:hover {
-  background: #ebf3f4;
+  background: #EBF3F4;
   cursor: pointer;
 }
 
@@ -27,13 +27,13 @@
 }
 .tableViewInfoContainer h3 {
   font-size: 1.3em;
-  color: #9797a6;
+  color: #9797A6;
 }
 .tableViewInfoContainer p {
   font-size: 1.6em;
 }
 .tableViewInfoContainer p a {
-  color: #0085b2;
+  color: #0085B2;
 }
 
 .i-phone {
@@ -49,7 +49,7 @@
 }
 
 .activeRow {
-  background: #ebf3f4;
+  background: #EBF3F4;
 }
 .activeRow .tableViewInfoWrap {
   padding-bottom: 70px;
@@ -72,19 +72,19 @@
 }
 
 .listenBtn, .viewBtn {
-  color: white;
+  color: #FFF;
   background: #388696;
 }
 .listenBtn:hover, .viewBtn:hover {
-  background: #1ca6b0;
+  background: #1CA6B0;
 }
 
 .changeBtn, .deleteBtn, .tableBtn {
   color: black;
-  background: #cadbe3;
+  background: #CADBE3;
 }
 .changeBtn:hover, .deleteBtn:hover, .tableBtn:hover {
-  background: #9fc0d0;
+  background: #9FC0D0;
 }
 
 .alertMessage {
@@ -119,10 +119,10 @@
 
 .tableView__row {
   position: relative;
-  border-bottom: 1px solid #dbdbea;
+  border-bottom: 1px solid #DBDBEA;
 }
 .tableView__row:hover {
-  background: #ebf3f4;
+  background: #EBF3F4;
 }
 .tableView__row:last-child {
   border-bottom: 0;
@@ -157,7 +157,7 @@
 
 .tableView__subRow__col__title {
   font-size: 1.3em;
-  color: #9797a6;
+  color: #9797A6;
 }
 .tableView__subRow__col__title p {
   font-size: 1em !important;
@@ -173,7 +173,7 @@
   font-size: 1.5em;
 }
 .tableView__subRow__col p a {
-  color: #0085b2;
+  color: #0085B2;
 }
 .tableView__subRow__col p a:hover {
   text-decoration: underline;

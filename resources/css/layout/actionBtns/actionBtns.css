@@ -13,19 +13,19 @@
 
 .actionDefaultBtn {
   color: #575748;
-  background: #dfdfd0;
+  background: #DFDFD0;
 }
 .actionDefaultBtn:hover {
   background: #cacab2;
 }
 
 .actionActiveBtn, .addBtn {
-  color: white;
-  background: #96bd3e;
+  color: #FFF;
+  background: #96BD3E;
 }
 
 .actionActiveBtn:hover, .addBtn:hover {
-  background: #839f34;
+  background: #839F34;
 }
 
 .actionBtn, .addBtn {
@@ -47,7 +47,7 @@
   top: 100%;
   left: 0;
   margin-top: 6px;
-  border: 1px solid #26c9ff;
+  border: 1px solid #26C9FF;
   width: 190px;
   background: white;
   z-index: 100;
@@ -61,12 +61,12 @@
   line-height: 30px;
   display: block;
   font-size: 1em;
-  color: #3f3f51;
+  color: #3F3F51;
   padding: 0px 16px;
   height: 100%;
 }
 .action__list li a:hover, .actionAdd__list li a:hover {
-  background: #dbdbea;
+  background: #DBDBEA;
 }
 
 .action__list__sortLink:after {
@@ -103,7 +103,7 @@
 .filter__link {
   display: inline-block;
   font-size: 1.8em;
-  color: #0085b2;
+  color: #0085B2;
   margin-right: 15px;
   line-height: 30px;
 }
@@ -131,7 +131,7 @@
 .f-filterByKey, #f-dateStart, #f-dateEnd {
   width: 120px;
   height: 30px;
-  border: 1px solid #cacad9;
+  border: 1px solid #CACAD9;
   padding: 0 15px;
   font-size: 1.3em;
   outline: none;
@@ -157,7 +157,7 @@
 .addFilterKey {
   width: 32px;
   height: 32px;
-  background: #96bd3e url(../i/comliteIco.png) center center no-repeat;
+  background: #96BD3E url(../i/comliteIco.png) center center no-repeat;
   margin-right: 8px !important;
   vertical-align: top;
   margin-left: 8px !important;
@@ -171,7 +171,7 @@
 .deleteFilterKey {
   width: 32px;
   height: 32px;
-  background: #dfdfd0 url(../i/deleteBtn.png) center center no-repeat;
+  background: #DFDFD0 url(../i/deleteBtn.png) center center no-repeat;
   vertical-align: top;
 }
 
@@ -262,7 +262,7 @@
   top: 100%;
   left: 0;
   margin-top: 6px;
-  border: 1px solid #26c9ff;
+  border: 1px solid #26C9FF;
   width: 98%;
   background: white;
   z-index: 100;
@@ -277,7 +277,7 @@
   line-height: 40px;
   display: block;
   font-size: 1em;
-  color: #3f3f51;
+  color: #3F3F51;
   padding: 0px 16px;
   height: 100%;
   white-space: nowrap;
@@ -286,7 +286,7 @@
   overflow: hidden;
 }
 .sort__list li a:hover {
-  background: #dbdbea;
+  background: #DBDBEA;
 }
 
 .mainContent__header .action__list li {
